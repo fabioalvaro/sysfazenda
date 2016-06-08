@@ -48,10 +48,9 @@ class consultaModel extends model {
      /** Remove the Entity */
     public function delConsulta($array) {
         //Key 
-        $where = $this->campo_chave . " = " . $array[$this->campo_chave];
-        $array2['active'] = 0; // Muda status para zero excluido!   
+        $where = $this->campo_chave . " = " . $array[$this->campo_chave];        
         $this->startTransaction();
-        $this->transaction($this->update($this->tabPadrao, $array2, $where));
+        $this->transaction($this->delete($this->tabPadrao, $where));
         $this->commit();
         return true;
     }

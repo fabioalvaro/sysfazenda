@@ -10,12 +10,15 @@ class fazendaModel extends model {
     var $campo_chave = 'id_fazenda';
 
     // An empty structure to create news Entitys 
-    public function estrutura_vazia() {
+    public function estrutura_vazia() {        
         $dados = null;
-        $dados[0]['id'] = NULL;
-        $dados[0]['name'] = NULL;
-        $dados[0]['created'] = NULL;
-        $dados[0]['active'] = NULL;        
+        $dados[0]['id_fazenda'] = NULL;
+        $dados[0]['nome'] = NULL;
+        $dados[0]['localidade'] = NULL;
+        $dados[0]['area_total'] = NULL;
+        $dados[0]['area_util'] = NULL;
+        $dados[0]['cartao_produtor'] = NULL;
+        $dados[0]['id_responsavel'] = NULL;
         return $dados;
     }
 
@@ -48,10 +51,9 @@ class fazendaModel extends model {
      /** Remove the Entity */
     public function delFazenda($array) {
         //Key 
-        $where = $this->campo_chave . " = " . $array[$this->campo_chave];
-        $array2['active'] = 0; // Muda status para zero excluido!   
+        $where = $this->campo_chave . " = " . $array[$this->campo_chave];        
         $this->startTransaction();
-        $this->transaction($this->update($this->tabPadrao, $array2, $where));
+        $this->transaction($this->delete($this->tabPadrao,$where));
         $this->commit();
         return true;
     }

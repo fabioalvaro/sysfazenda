@@ -2,12 +2,22 @@
 
 class animal extends controller {
 
-    public function index_action() {   
-            
-         $this->smarty->display('animal/animal.tpl');
+    public function index_action() {             
+        $modelAnimal = new animalModel();
+        $animais = $modelAnimal->getAnimais();
+        $this->smarty->assign('animais', $animais); 
+        $this->smarty->display('animal/animal.tpl');
     }
     
     public function novo(){
+        $id_animal = $this->getParam('id_animal');
+        $registro = array();
+        if ((bool) $id_animal) {
+            //buscando o animal
+            $modelAnimal = new animalModel();
+            $registro = $modelAnimal->getAnimais("id_animal = {$id_animal}");
+            $registro = $registro[0];
+        }
         //buscando as Fazendas
         $modelFazendas = new fazendaModel();
         $options_fazendas = array('' => 'SELECIONE');
@@ -22,7 +32,7 @@ class animal extends controller {
             "F" => "Fêmea"
         );
         $this->smarty->assign('options_sexo', $options_sexo);
-        
+        $this->smarty->assign('registro', $registro);
         $this->smarty->display('animal/animalNovo.tpl');
     }
     
@@ -49,9 +59,20 @@ class animal extends controller {
         //var_dump($data);die;
         //gravando os dados
         $modelAnimal = new animalModel();
-        $modelAnimal->setAnimal($data);
-        
+        if (!(bool) $data['id_animal']) {
+            $modelAnimal->setAnimal($data);
+        } else {
+            $modelAnimal->updAnimal($data);
+        }
         header('Location: /animal');
         
+    }
+    
+    public function excluir() {
+        $id_animal = $this->getParam('id_animal');
+        $data['id_animal'] = $id_animal;
+        $modelAnimal = new animalModel();
+        $modelAnimal->delAnimal($data);
+        header('Location: /animal');
     }
 }

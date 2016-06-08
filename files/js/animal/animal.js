@@ -8,3 +8,11 @@ $(document).ready(function () {
         language: 'pt-BR'
     });
 });
+
+function confirmaExcluir(id_animal) {
+    var url_de_Exclusao = "/animal/excluir/id_animal/" + id_animal;
+    if (confirm("Confirma a exclusão desse animal ?")) {
+        window.location = url_de_Exclusao;
+
+    }
+}

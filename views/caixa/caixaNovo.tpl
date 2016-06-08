@@ -23,28 +23,28 @@
                             <div class="form-group">
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
-                                    <input type="hidden" class="form-control" name="id_caixa" id="id_caixa">
-                                    <input type="text" class="col-sm-4" id="data_registro" placeholder="Data Registro" name="data_registro">
+                                    <input type="hidden" class="form-control" name="id_caixa" id="id_caixa" value="{$registro.id_caixa|default:''}">
+                                    <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro}" placeholder="Data Registro" name="data_registro">
                                 </div>
                             </div>                            
                             <div class="form-group">
                                 <label for="fazenda" class="col-sm-2 control-label">Fazenda</label>
                                 <div class="col-sm-4">
                                     <select id="fazenda" name="fazenda" placeholder="Fazenda" class="col-xs-12">
-                                        {html_options options=$options_fazendas|default:''}
+                                        {html_options options=$options_fazendas|default:'' selected=$registro.id_fazenda}
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="historico" class="col-sm-2 control-label">Histórico</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="historico" name="historico" placeholder="Histórico">
+                                    <input type="text" class="form-control" id="historico" name="historico" value="{$registro.historico|default:''}" placeholder="Histórico">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="valor" class="col-sm-2 control-label">Valor</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor">
+                                    <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|default:''}" placeholder="Valor">
                                 </div>
                             </div>                                                                                                                
                             <div class="form-group">
@@ -59,8 +59,8 @@
             </div>
         </div>
         {include file="comum/footer.tpl"}        
-        <link   rel="stylesheet" type="text/css" href="../../files/css/datepicker.css">
-        <script type="text/javascript" src="../../files/js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="../../files/js/caixa/caixa.js"></script>
+        <link   rel="stylesheet" type="text/css" href="/files/css/datepicker.css">
+        <script type="text/javascript" src="/files/js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="/files/js/caixa/caixa.js"></script>
     </body>
 </html>

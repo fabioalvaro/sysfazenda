@@ -6,17 +6,17 @@
     <body class="flat-blue">    
         {include file="comum/menu.tpl"}
         <div class="container-fluid">
-{*            <div class="side-body">*}
-                <div class="page-title">
-                    <span class="title">Fazendas</span>
-                    <div class="description">
-                        <label class="col-xs-12">Cadastro de Fazenda</label> 
-                        <div class="col-xs-12 col-md-2 col-lg-2 button-m-top">
-                            <a class="btn btn-primary glyphicon glyphicon-plus" href="/fazenda/novo">Novo</a>                            
-                        </div>
-                    </div>                    
-                </div>
-{*            </div>*}
+            {*            <div class="side-body">*}
+            <div class="page-title">
+                <span class="title">Fazendas</span>
+                <div class="description">
+                    <label class="col-xs-12">Cadastro de Fazenda</label> 
+                    <div class="col-xs-12 col-md-2 col-lg-2 button-m-top">
+                        <a class="btn btn-primary glyphicon glyphicon-plus" href="/fazenda/novo">Novo</a>                            
+                    </div>
+                </div>                    
+            </div>
+            {*            </div>*}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="card">
@@ -40,26 +40,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Fazenda São Francisco</td>
-                                        <td>Jundiaí</td>
-                                        <td>10.000 M²</td>
-                                        <td>8.000 M²</td>
-                                        <td>1234564477</td>
-                                        <td>José</td>
-                                        <td><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> | <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Fazenda Joãozinho</td>
-                                        <td>São Paulo</td>
-                                        <td>5.000 M²</td>
-                                        <td>4.000 M²</td>
-                                        <td>12123211121</td>
-                                        <td>João</td>
-                                        <td><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> | <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-                                    </tr>                                    
+                                    {foreach from=$fazendas item="linha"}
+                                        <tr>
+                                            <td>{$linha.id_fazenda}</td>
+                                            <td>{$linha.nome}</td>
+                                            <td>{$linha.localidade}</td>                                            
+                                            <td>{$linha.area_total}</td>
+                                            <td>{$linha.area_util}</td>
+                                            <td>{$linha.cartao_produtor}</td>
+                                            <td>{$linha.id_responsavel}</td>
+                                            <td class="">
+                                                <a class="glyphicon glyphicon-refresh"  href="/fazenda/novo/id_fazenda/{$linha.id_fazenda}"></a>
+                                                <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_fazenda});"></a> 
+                                            </td>
+                                        </tr>
+                                    {foreachelse}
+                                        <tr><td colspan="6">Nenhuma Fazenda encontrada</td></tr>
+                                    {/foreach}        
                                 </tbody>
                             </table>
                         </div>
@@ -67,5 +64,6 @@
                 </div>
             </div>
             {include file="comum/footer.tpl"}
+            <script type="text/javascript" src="/files/js/fazenda/fazenda.js"></script>
     </body>
 </html>

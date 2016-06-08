@@ -30,42 +30,39 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nome</th>
-                                        <th>Localidade</th>
-                                        <th>Área Total</th>
-                                        <th>Área Útil</th>
-                                        <th>Cartão Produtor</th>
-                                        <th>Responsavel</th>
+                                        <th>Data Registro</th>
+                                        <th>Fazenda</th>
+                                        <th>Animal</th>
+                                        <th>Idade Atual</th>
+                                        <th>Peso Atual</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Fazenda São Francisco</td>
-                                        <td>Jundiaí</td>
-                                        <td>10.000 M²</td>
-                                        <td>8.000 M²</td>
-                                        <td>1234564477</td>
-                                        <td>José</td>
-                                        <td><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> | <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Fazenda Joãozinho</td>
-                                        <td>São Paulo</td>
-                                        <td>5.000 M²</td>
-                                        <td>4.000 M²</td>
-                                        <td>12123211121</td>
-                                        <td>João</td>
-                                        <td><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> | <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-                                    </tr>                                    
+                                    {foreach from=$consultas item="linha"}
+                                        <tr>
+                                            <td>{$linha.id_consulta}</td>
+                                            <td>{$linha.data_registro}</td>
+                                            <td>{$linha.id_fazenda}</td>
+                                            <td>{$linha.id_animal}</td>
+                                            <td>{$linha.idade}</td>
+                                            <td>{$linha.peso_atual}</td>
+                                            <td class="">
+                                                <a class="glyphicon glyphicon-refresh"  href="/consulta/novo/id_consulta/{$linha.id_consulta}"></a>
+                                                <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_consulta});"></a> 
+                                            </td>
+                                        </tr>
+                                    {foreachelse}
+                                        <tr><td colspan="6">Nenhuma consulta encontrado</td></tr>
+                                    {/foreach}        
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
             {include file="comum/footer.tpl"}
+            <script type="text/javascript" src="/files/js/consulta/consulta.js"></script>
     </body>
 </html>

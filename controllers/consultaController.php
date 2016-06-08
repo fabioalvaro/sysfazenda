@@ -3,11 +3,22 @@
 class consulta extends controller {
 
     public function index_action() {   
-            
-         $this->smarty->display('consulta/consulta.tpl');
+        $modelConsulta = new consultaModel();
+        $consultas = $modelConsulta->getConsultas();
+        $this->smarty->assign('consultas', $consultas);    
+        $this->smarty->display('consulta/consulta.tpl');
     }
     
-    public function novo(){
+    public function novo(){       
+        $id_consulta = $this->getParam('id_consulta');
+        $registro = array();
+        if ((bool) $id_consulta) {
+            //buscando o animal
+            $modelConsulta = new consultaModel();
+            $registro = $modelConsulta->getConsultas("id_consulta = {$id_consulta}");            
+            $registro = $registro[0];            
+        }
+        
         //buscando fazendas
         $modelFazendas = new fazendaModel();
         $options_fazendas = array('' => 'SELECIONE');
@@ -30,13 +41,13 @@ class consulta extends controller {
             $options_crias[$value['id_animal']] = $value['nome'];
         }
         $this->smarty->assign('options_crias', $options_crias);
-        
-        
+        $this->smarty->assign('registro', $registro);        
         $this->smarty->display('consulta/consultaNovo.tpl');
     }
     
     public function gravar(){                
         $_POST['data_registro'] = implode("-",array_reverse(explode("/",$_POST['data_registro'])));
+        $data['id_consulta']    = isset($_POST['id_consulta']) ? $_POST['id_consulta'] : '';
         $data['data_registro']  = isset($_POST['data_registro']) ? $_POST['data_registro'] : '';
         $data['id_animal']      = isset($_POST['animal']) ? $_POST['animal'] : '';
         $data['idade']          = isset($_POST['idade']) ? $_POST['idade'] : 0;
@@ -44,10 +55,21 @@ class consulta extends controller {
         $data['id_fazenda']     = isset($_POST['fazenda']) ? $_POST['fazenda'] : '';
         $data['peso_atual']     = isset($_POST['peso_atual']) ? $_POST['peso_atual'] : 0;
         $data['cria']           = isset($_POST['cria']) ? $_POST['cria'] : 0;
-        
+        //gravando os dados
         $modelConsulta = new consultaModel();
-        $modelConsulta->setConsulta($data);
-        
+        if (!(bool) $data['id_consulta']) {
+            $modelConsulta->setConsulta($data);
+        } else {
+            $modelConsulta->updConsulta($data);
+        }
+        header('Location: /consulta');
+    }
+    
+    public function excluir() {
+        $id_consulta = $this->getParam('id_consulta');
+        $data['id_consulta'] = $id_consulta;
+        $modelConsulta = new consultaModel();
+        $modelConsulta->delConsulta($data);
         header('Location: /consulta');
     }
     

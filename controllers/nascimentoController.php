@@ -3,11 +3,21 @@
 class nascimento extends controller {
 
     public function index_action() {   
-            
-         $this->smarty->display('nascimento/nascimento.tpl');
+        $modelNascimento = new nascimentoModel();
+        $nascimentos = $modelNascimento->getNascimentos();
+        $this->smarty->assign('nascimentos', $nascimentos);    
+        $this->smarty->display('nascimento/nascimento.tpl');
     }
     
-    public function novo(){
+    public function novo(){        
+        $id_nascimento = $this->getParam('id_nascimento');
+        $registro = array();
+        if ((bool) $id_nascimento) {
+            //buscando o animal
+            $modelNascimento = new nascimentoModel();
+            $registro = $modelNascimento->getNascimentos("id_nascimento = {$id_nascimento}");            
+            $registro = $registro[0];            
+        }
         //buscando Fazendas
         $modelFazendas = new fazendaModel();
         $options_fazendas = array('' => 'SELECIONE');
@@ -46,7 +56,7 @@ class nascimento extends controller {
             $options_semen[$value['id_semen']] = $value['id_semen'];
         }        
         $this->smarty->assign('options_semen', $options_semen);
-        
+        $this->smarty->assign('registro', $registro);
         $this->smarty->display('nascimento/nascimentoNovo.tpl');
     }
     
@@ -68,8 +78,19 @@ class nascimento extends controller {
         //var_dump($data);die;
         //gravando os dados
         $modelNascimento = new nascimentoModel();
-        $modelNascimento->setNascimento($data);
-        
+        if (!(bool) $data['id_nascimento']) {
+            $modelNascimento->setNascimento($data);
+        } else {
+            $modelNascimento->updNascimento($data);
+        }
+        header('Location: /nascimento');
+    }
+    
+    public function excluir() {
+        $id_nascimento = $this->getParam('id_nascimento');
+        $data['id_nascimento'] = $id_nascimento;
+        $modelNascimento = new nascimentoModel();
+        $modelNascimento->delNascimento($data);
         header('Location: /nascimento');
     }
     

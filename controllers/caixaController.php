@@ -3,11 +3,22 @@
 class caixa extends controller {
 
     public function index_action() {   
-            
-         $this->smarty->display('caixa/caixa.tpl');
+        $modelCaixa = new caixaModel();
+        $caixas = $modelCaixa->getCaixas();
+        $this->smarty->assign('caixas', $caixas);    
+        $this->smarty->display('caixa/caixa.tpl');
     }
     
     public function novo(){
+        //var_dump($_GET);die;
+        $id_caixa = $this->getParam('id_caixa');        
+        $registro = array();
+        if ((bool) $id_caixa) {
+            //buscando o animal
+            $modelCaixa = new caixaModel();
+            $registro = $modelCaixa->getCaixas("id_caixa = {$id_caixa}");            
+            $registro = $registro[0];            
+        }
         //buscando as Fazendas
         $modelFazendas = new fazendaModel();
         $options_fazendas = array('' => 'SELECIONE');
@@ -15,7 +26,7 @@ class caixa extends controller {
             $options_fazendas[$value['id_fazenda']] = $value['nome'];
         }
         $this->smarty->assign('options_fazendas', $options_fazendas);
-        
+        $this->smarty->assign('registro', $registro);
         $this->smarty->display('caixa/caixaNovo.tpl');
     }
     
@@ -30,9 +41,21 @@ class caixa extends controller {
         
         //var_dump($data);die;
         //gravando os dados
+        //gravando os dados
         $modelCaixa = new caixaModel();
-        $modelCaixa->setCaixa($data);
-        
+        if (!(bool) $data['id_caixa']) {
+            $modelCaixa->setCaixa($data);
+        } else {
+            $modelCaixa->updCaixa($data);
+        }
+        header('Location: /caixa');
+    }
+    
+    public function excluir() {
+        $id_caixa = $this->getParam('id_caixa');
+        $data['id_caixa'] = $id_caixa;
+        $modelCaixa = new caixaModel();
+        $modelCaixa->delCaixa($data);
         header('Location: /caixa');
     }
     

@@ -21,15 +21,15 @@
                             <div class="form-group">
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
-                                    <input type="hidden" class="form-control" name="id_consulta" id="id_consulta">
-                                    <input type="text" class="col-sm-4" id="data_registro" placeholder="Data Registro" name="data_registro">
+                                    <input type="hidden" class="form-control" value="{$registro.id_consulta}" name="id_consulta" id="id_consulta">
+                                    <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro}" placeholder="Data Registro" name="data_registro">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="fazenda" class="col-sm-2 control-label">Fazenda</label>
                                 <div class="col-sm-4">
                                     <select id="fazenda" name="fazenda" class="col-xs-12">
-                                        {html_options options=$options_fazendas|default:''}
+                                        {html_options options=$options_fazendas|default:'' selected=$registro.id_fazenda}
                                     </select>
                                 </div>
                             </div>
@@ -37,33 +37,33 @@
                                 <label for="animal" class="col-sm-2 control-label">Animal</label>
                                 <div class="col-sm-4">
                                     <select id="animal" name="animal" class="col-xs-12">
-                                        {html_options options=$options_animais|default:''}
+                                        {html_options options=$options_animais|default:'' selected=$registro.id_animal}
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="idade" class="col-sm-2 control-label">Idade Atual</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="idade" class="form-control" id="idade" placeholder="Idade Atual">
+                                    <input type="text" name="idade" class="form-control" id="idade" value="{$registro.idade}" placeholder="Idade Atual">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="peso_atual" class="col-sm-2 control-label">Peso Atual</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="peso_atual" id="peso_atual" placeholder="Peso Atual">
+                                    <input type="text" class="form-control" name="peso_atual" id="peso_atual" value="{$registro.peso_atual}" placeholder="Peso Atual">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tipo_registro" class="col-sm-2 control-label">Tipo Registro</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="tipo_registro" class="form-control" id="tipo_registro" placeholder="Tipo Registro">
+                                    <input type="text" name="tipo_registro" class="form-control" id="tipo_registro" value="{$registro.tipo_registro}" placeholder="Tipo Registro">
                                 </div>
                             </div>                            
                             <div class="form-group">
                                 <label for="cria" class="col-sm-2 control-label">Cria</label>
                                 <div class="col-sm-4">
                                     <select id="cria" name="cria" class="col-xs-12">
-                                        {html_options options=$options_crias|default:''}
+                                        {html_options options=$options_crias|default:'' selected=$registro.cria}
                                     </select>
                                 </div>
                             </div>                            

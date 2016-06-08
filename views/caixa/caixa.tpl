@@ -30,39 +30,29 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Data</th>
+                                        <th>Data Registro</th>
                                         <th>Fazenda</th>
-                                        <th>Nº do brinco</th>
-                                        <th>Nome</th>
-                                        <th>Sexo</th>
-                                        <th>Data Nascimento</th>
-                                        <th>Peso</th>                                        
+                                        <th>Historico</th>
+                                        <th>Valor</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Fazenda São Francisco</td>
-                                        <td>Jundiaí</td>
-                                        <td>10.000 M²</td>
-                                        <td>8.000 M²</td>
-                                        <td>1234564477</td>
-                                        <td>José</td>
-                                        <td>José</td>                                        
-                                        <td><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> | <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Fazenda Joãozinho</td>
-                                        <td>São Paulo</td>
-                                        <td>5.000 M²</td>
-                                        <td>4.000 M²</td>
-                                        <td>12123211121</td>
-                                        <td>João</td>
-                                        <td>João</td>
-                                        <td><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> | <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
-                                    </tr>                                    
+                                    {foreach from=$caixas item="linha"}
+                                        <tr>
+                                            <td>{$linha.id_caixa}</td>
+                                            <td>{$linha.data_registro}</td>
+                                            <td>{$linha.id_fazenda}</td>
+                                            <td>{$linha.historico}</td>
+                                            <td>{$linha.valor}</td>
+                                            <td class="">
+                                                <a class="glyphicon glyphicon-refresh"  href="/caixa/novo/id_caixa/{$linha.id_caixa}"></a>
+                                                <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_caixa});"></a> 
+                                            </td>
+                                        </tr>
+                                    {foreachelse}
+                                        <tr><td colspan="6">Nenhum lançamento de caixa encontrado</td></tr>
+                                    {/foreach}        
                                 </tbody>
                             </table>
                         </div>
@@ -70,5 +60,6 @@
                 </div>
             </div>
             {include file="comum/footer.tpl"}
+            <script type="text/javascript" src="/files/js/caixa/caixa.js"></script>
     </body>
 </html>
