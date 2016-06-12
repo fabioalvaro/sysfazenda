@@ -4,10 +4,10 @@
  */
 
 
-class animalModel extends model {
+class usuarioModel extends model {
     
-    var $tabPadrao = 'animais';
-    var $campo_chave = 'id_animal';
+    var $tabPadrao = 'usuarios';
+    var $campo_chave = 'id_usuario';
 
     // An empty structure to create news Entitys 
     public function estrutura_vazia() {
@@ -21,20 +21,13 @@ class animalModel extends model {
 
     
     /** Retrieve the Entity */
-    public function getAnimais($where = null) {
+    public function getUsuarios($where = null) {
         $select = array('*');
         return $this->read($this->tabPadrao, $select, $where, null, null, null, null);
     }
-    
-    public function relAnimais(){
-        $table = "";
-        $fields = array('*');
-        $where = "";
-        return $this->read($table, $fields, $where, null, null, null, null);
-    }
 
     /** Save a new Entity  */
-    public function setAnimal($array) {
+    public function setUsuario($array) {
 
         $this->startTransaction();
         $id = $this->transaction($this->insert($this->tabPadrao, $array, false));
@@ -43,7 +36,7 @@ class animalModel extends model {
     }
 
     /** Update the Entity */
-    public function updAnimal($array) {
+    public function updUsuario($array) {
         //Chave    
         $where = $this->campo_chave . " = " . $array[$this->campo_chave];
         $this->startTransaction();
@@ -53,7 +46,7 @@ class animalModel extends model {
     }
 
      /** Remove the Entity */
-    public function delAnimal($array) {
+    public function delUsuario($array) {
         //Key 
         $where = $this->campo_chave . " = " . $array[$this->campo_chave];        
         $this->startTransaction();

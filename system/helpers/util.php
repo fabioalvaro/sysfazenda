@@ -31,7 +31,13 @@ class util {
     }
     
     public static function isLogado(){
-        
+        $status = false;
+        $login['status']        = isset($_SESSION['logado']) ? $_SESSION['logado'] : false;
+        $login['id_usuario']    = isset($_SESSION['usuario']['id']) ? $_SESSION['usuario']['id'] : 0;
+        if(($login['status'] == true) && ($login['id_usuario'] > 0)){
+            $status = true;
+        }
+        return $status;
     }
 
     public static function fixUrl($string, $slug = '-') {

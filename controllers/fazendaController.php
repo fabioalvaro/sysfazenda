@@ -3,10 +3,14 @@
 class fazenda extends controller {
 
     public function index_action() {
-        $modelFazenda = new fazendaModel();
-        $fazendas = $modelFazenda->getFazendas();
-        $this->smarty->assign('fazendas', $fazendas);
-        $this->smarty->display('fazenda/fazenda.tpl');
+        if (util::isLogado()) {
+            $modelFazenda = new fazendaModel();
+            $fazendas = $modelFazenda->getFazendas();
+            $this->smarty->assign('fazendas', $fazendas);
+            $this->smarty->display('fazenda/fazenda.tpl');
+        } else {
+            header('Location: /login');
+        }
     }
 
     public function novo() {

@@ -13,21 +13,17 @@
                             <i class="fa fa-th icon"></i>
                         </button>
                     </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
-                            <i class="fa fa-times icon"></i>
-                        </button>
-                        {*<li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
-                            <ul class="dropdown-menu animated fadeInDown">
+                    {*<ul class="nav navbar-nav navbar-right">                                                
+                            <a href="/login/sair" class="dropdown-toggle" data-toggle="dropdown" role="button" >Sair</a>
+                            {*<ul class="dropdown-menu animated fadeInDown">
                                 <li class="title">
                                     Notification <span class="badge pull-right">0</span>
                                 </li>
                                 <li class="message">
                                     No new notification
                                 </li>
-                            </ul>
-                        </li>*}
+                            </ul>                        
+                    </ul>*}
                         {*<li class="dropdown danger">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 4</a>
                             <ul class="dropdown-menu danger  animated fadeInDown">
@@ -77,8 +73,8 @@
                                     </div>
                                 </li>
                             </ul>
-                        </li>*}
-                    </ul>
+                        </li>
+                    </ul>*}
                 </div>
             </nav>
             <div class="side-menu sidebar-inverse">
@@ -107,18 +103,12 @@
                                 <div id="dropdown-element" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="/fazenda">Fazenda</a>
-                                            </li>
-                                            <li><a href="/animal">Cadastro do Animal</a>
-                                            </li>
-                                            <li><a href="/semen">Banco de Semem</a>
-                                            </li>
-                                            <li><a href="/consulta">Cadastro de Consulta</a>
-                                            </li>
-                                            <li><a href="/nascimento">Cadastro de Nascimento</a>
-                                            </li>
-                                            <li><a href="/caixa">Caixa</a>
-                                            </li>                                            
+                                            <li><a href="/fazenda">Fazenda</a></li>
+                                            <li><a href="/animal">Cadastro do Animal</a></li>
+                                            <li><a href="/semen">Banco de Semem</a></li>
+                                            <li><a href="/consulta">Cadastro de Consulta</a></li>
+                                            {*<li><a href="/nascimento">Cadastro de Nascimento</a></li>*}
+                                            <li><a href="/caixa">Caixa</a></li>                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -131,11 +121,16 @@
                                 <div id="dropdown-table" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="nav navbar-nav">
-                                            <li><a href="table/table.html">Histórico</a>
+                                            <li><a href="/animal/relatorio">Animais</a>
                                             </li>                                            
                                         </ul>
                                     </div>
                                 </div>
+                            </li>
+                            <li class="active">
+                                <a href="/login/sair">
+                                    <span class="icon fa fa-tachometer"></span><span class="title">Sair</span>
+                                </a>
                             </li>
                             {*<li class="panel panel-default dropdown">
                                 <a data-toggle="collapse" href="#dropdown-form">
@@ -201,8 +196,8 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </li>*}
-                            {*<li>
+                            </li>
+                            <li>
                                 <a href="license.html">
                                     <span class="icon fa fa-thumbs-o-up"></span><span class="title">License</span>
                                 </a>
@@ -395,7 +390,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>*}
+                    </div>
                
         {*<footer class="app-footer">
             <div class="wrapper">

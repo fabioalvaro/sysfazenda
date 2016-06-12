@@ -70,25 +70,33 @@
                             <div class="form-group">
                                 <label for="tipo_registro" class="col-sm-2 control-label">Tipo Registro</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="tipo_registro" name="tipo_registro" value="{$registro.tipo_registro|default:''}" placeholder="Tipo Registro">
+                                    <select id="tipo_registro" name="tipo_registro" placeholder="Tipo Registro" class="col-xs-12">
+                                        {html_options options=$options_tipo_registro|default:'' selected=$registro.tipo_registrp}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="numero_brinco_mae" class="col-sm-2 control-label">Nº Brinco Mãe</label>
+                                <label for="id_mae" class="col-sm-2 control-label">Mãe</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="numero_brinco_mae" value="{$registro.numero_brinco_mae|default:''}" name="numero_brinco_mae" placeholder="Nº Brinco Mãe">
+                                    <select id="id_mae" name="id_mae" placeholder="Mãe" class="col-xs-12">
+                                        {html_options options=$options_animais_maes|default:'' selected=$registro.id_mae}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="numero_brinco_pai" class="col-sm-2 control-label">Nº Brinco Pai</label>
+                                <label for="id_pai" class="col-sm-2 control-label">Pai</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="numero_brinco_pai" id="numero_brinco_pai" value="{$registro.numero_brinco_pai|default:''}" placeholder="Nº Brinco Pai">
+                                    <select id="id_pai" name="id_pai" placeholder="Pai" class="col-xs-12">
+                                        {html_options options=$options_animais_pais|default:'' selected=$registro.id_pai}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="semen" class="col-sm-2 control-label">Semen</label>
+                                <label for="id_semen" class="col-sm-2 control-label">Semen</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="semen" name="semen" value="{$registro.semen|default:''}" placeholder="Semen">
+                                    <select id="id_mae" name="id_semen" placeholder="Semen" class="col-xs-12">
+                                        {html_options options=$options_semen|default:'' selected=$registro.id_semen}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -109,6 +117,26 @@
                                     <input type="text" class="form-control" id="observacao" name="observacao" value="{$registro.obs|default:''}" placeholder="Observação">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="descontinuado" class="col-sm-2 control-label">Descontinuado</label>
+                                <div class="col-sm-4">
+                                    <input type="checkbox" class="form-control" id="descontinuado" name="descontinuado" value="{$registro.descontinuado|default:''}">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="data_descontinuado" class="col-sm-2 control-label">Data Descontinuado</label>
+                                    <div class="col-sm-4">                                        
+                                        <input type="text" class="col-sm-4" id="data_descontinuado" placeholder="Data Descontinuado" value="{$registro.data_descontinuado|default:''}" name="data_descontinuado">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="motivo_descontinuado" class="col-sm-2 control-label">Motivo Descontinuado</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="motivo_descontinuado" name="motivo_descontinuado" value="{$registro.motivo_descontinuado|default:''}" placeholder="Motivo Descontinuado">
+                                    </div>
+                                </div>
+                            </div>                                    
                             <div class="form-group">
                                 {*                                <label for="area_util" class="col-sm-2 control-label">Área Útil</label>*}
                                 <div class="col-sm-4">

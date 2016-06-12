@@ -7,6 +7,10 @@ $(document).ready(function () {
         format: 'dd/mm/yyyy',
         language: 'pt-BR'
     });
+    $("#data_descontinuado").datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'pt-BR'
+    });
 });
 
 function confirmaExcluir(id_animal) {

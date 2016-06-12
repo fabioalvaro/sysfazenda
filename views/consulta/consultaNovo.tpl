@@ -56,7 +56,9 @@
                             <div class="form-group">
                                 <label for="tipo_registro" class="col-sm-2 control-label">Tipo Registro</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="tipo_registro" class="form-control" id="tipo_registro" value="{$registro.tipo_registro}" placeholder="Tipo Registro">
+                                    <select id="tipo_registro" name="tipo_registro" class="col-xs-12">
+                                        {html_options options=$options_tipo_registro|default:'' selected=$registro.tipo_registro}
+                                    </select>
                                 </div>
                             </div>                            
                             <div class="form-group">
