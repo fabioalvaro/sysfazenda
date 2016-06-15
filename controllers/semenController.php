@@ -15,11 +15,11 @@ class semen extends controller {
 
     public function novo() {
         $id_semen = $this->getParam('id_semen');
-        $registro = array();
+        $registro = array();        
         if ((bool) $id_semen) {
             //buscando o animal
             $modelSemen = new semenModel();
-            $registro = $modelSemen->getSemen("id_semen = {$id_semen}");
+            $registro = $modelSemen->getSemen("s.id_semen = {$id_semen}");
             $registro = $registro[0];
         }
 

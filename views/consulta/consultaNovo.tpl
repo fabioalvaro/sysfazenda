@@ -22,7 +22,7 @@
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" value="{$registro.id_consulta}" name="id_consulta" id="id_consulta">
-                                    <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro}" placeholder="Data Registro" name="data_registro">
+                                    <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro|date_format:'d/m/Y'}" placeholder="Data Registro" name="data_registro">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label for="peso_atual" class="col-sm-2 control-label">Peso Atual</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="peso_atual" id="peso_atual" value="{$registro.peso_atual}" placeholder="Peso Atual">
+                                    <input type="text" class="form-control" name="peso_atual" id="peso_atual" value="{$registro.peso_atual|string_format:"%.2f"}" placeholder="Peso Atual">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -22,8 +22,19 @@ class consultaModel extends model {
     
     /** Retrieve the Entity */
     public function getConsultas($where = null) {
-        $select = array('*');
-        return $this->read($this->tabPadrao, $select, $where, null, null, null, null);
+        $select = array('c.id_consulta,
+                         c.data_registro,
+                         c.id_animal,
+                         c.idade,
+                         c.tipo_registro,
+                         c.id_fazenda,
+                         c.peso_atual,
+                         c.cria,
+                         f.nome as nomeFazenda,
+                         a.nome as nomeAnimal');
+        return $this->read("{$this->tabPadrao} c 
+                            left join fazendas f on c.id_fazenda = f.id_fazenda
+                            left join animais a on a.id_animal = c.id_animal", $select, $where, null, null, null, null);
     }
 
     /** Save a new Entity  */

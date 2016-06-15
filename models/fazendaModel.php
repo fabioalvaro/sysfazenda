@@ -25,8 +25,15 @@ class fazendaModel extends model {
     
     /** Retrieve the Entity */
     public function getFazendas($where = null) {
-        $select = array('*');
-        return $this->read($this->tabPadrao, $select, $where, null, null, null, null);
+        $select = array('f.id_fazenda,
+                         f.nome,
+                         f.localidade,
+                         f.area_total,
+                         f.area_util,
+                         f.cartao_produtor,
+                         f.id_responsavel,
+                         r.nome as nomeResponsavel');
+        return $this->read("{$this->tabPadrao} f left join responsaveis r on r.id_responsavel = f.id_responsavel", $select, $where, null, null, null, null);
     }
 
     /** Save a new Entity  */

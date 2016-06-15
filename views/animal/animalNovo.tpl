@@ -24,13 +24,13 @@
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" name="id_animal" id="id_animal" value="{$registro.id_animal|default:''}">
-                                    <input type="text" class="col-sm-4" id="data_registro" placeholder="Data Registro" value="{$registro.data_registro|default:''}" name="data_registro">
+                                    <input type="text" class="col-sm-4" id="data_registro" placeholder="Data Registro" value="{$registro.data_registro|default:''|date_format:'d/m/Y'}" name="data_registro">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="data_nascimento" class="col-sm-2 control-label">Data Nascimento</label>
                                 <div class="col-sm-4">                                    
-                                    <input type="datetime" class="col-sm-4" id="data_nascimento" placeholder="Data Nascimento" name="data_nascimento" value="{$registro.data_nascimento|default:''}">
+                                    <input type="datetime" class="col-sm-4" id="data_nascimento" placeholder="Data Nascimento" name="data_nascimento" value="{$registro.data_nascimento|default:''|date_format:'d/m/Y'}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -64,14 +64,14 @@
                             <div class="form-group">
                                 <label for="peso" class="col-sm-2 control-label">Peso</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="peso" id="peso" value="{$registro.peso|default:''}" placeholder="peso">
+                                    <input type="text" class="form-control" name="peso" id="peso" value="{$registro.peso|default:''|string_format:"%.2f"}" placeholder="peso">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tipo_registro" class="col-sm-2 control-label">Tipo Registro</label>
                                 <div class="col-sm-4">
                                     <select id="tipo_registro" name="tipo_registro" placeholder="Tipo Registro" class="col-xs-12">
-                                        {html_options options=$options_tipo_registro|default:'' selected=$registro.tipo_registrp}
+                                        {html_options options=$options_tipo_registro|default:'' selected=$registro.tipo_registro}
                                     </select>
                                 </div>
                             </div>
@@ -120,14 +120,14 @@
                             <div class="form-group">
                                 <label for="descontinuado" class="col-sm-2 control-label">Descontinuado</label>
                                 <div class="col-sm-4">
-                                    <input type="checkbox" class="form-control" id="descontinuado" name="descontinuado" value="{$registro.descontinuado|default:''}">
+                                    <input type="checkbox" class="form-control" id="descontinuado" name="descontinuado" {if $registro.flag_descontinuado == 1}checked="true"{/if} >
                                 </div>
                             </div>
                             <div>
                                 <div class="form-group">
                                     <label for="data_descontinuado" class="col-sm-2 control-label">Data Descontinuado</label>
                                     <div class="col-sm-4">                                        
-                                        <input type="text" class="col-sm-4" id="data_descontinuado" placeholder="Data Descontinuado" value="{$registro.data_descontinuado|default:''}" name="data_descontinuado">
+                                        <input type="text" class="col-sm-4" id="data_descontinuado" placeholder="Data Descontinuado" value="{$registro.data_descontinuado|default:''|date_format:'d/m/Y'}" name="data_descontinuado">
                                     </div>
                                 </div>
                                 <div class="form-group">

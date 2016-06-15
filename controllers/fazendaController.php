@@ -5,7 +5,7 @@ class fazenda extends controller {
     public function index_action() {
         if (util::isLogado()) {
             $modelFazenda = new fazendaModel();
-            $fazendas = $modelFazenda->getFazendas();
+            $fazendas = $modelFazenda->getFazendas();            
             $this->smarty->assign('fazendas', $fazendas);
             $this->smarty->display('fazenda/fazenda.tpl');
         } else {

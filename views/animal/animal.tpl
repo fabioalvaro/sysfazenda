@@ -43,12 +43,12 @@
                                     {foreach from=$animais item="linha"}
                                         <tr>
                                             <td>{$linha.id_animal}</td>
-                                            <td>{$linha.data_registro}</td>
-                                            <td>{$linha.id_fazenda}</td>                                            
+                                            <td>{$linha.data_registro|date_format:'d/m/Y'}</td>
+                                            <td>{$linha.nomeFazenda}</td>                                            
                                             <td>{$linha.nome}</td>
                                             <td>{$linha.numero_brinco}</td>
                                             <td>{$linha.sexo}</td>
-                                            <td>{$linha.peso}</td>
+                                            <td>{$linha.peso|string_format:"%.2f"}</td>
                                             <td class="">
                                                 <a class="glyphicon glyphicon-refresh"  href="/animal/novo/id_animal/{$linha.id_animal}"></a>
                                                 <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_animal});"></a> 

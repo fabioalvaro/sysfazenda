@@ -45,10 +45,10 @@
                                             <td>{$linha.id_fazenda}</td>
                                             <td>{$linha.nome}</td>
                                             <td>{$linha.localidade}</td>                                            
-                                            <td>{$linha.area_total}</td>
-                                            <td>{$linha.area_util}</td>
+                                            <td>{$linha.area_total|string_format:"%d"}</td>
+                                            <td>{$linha.area_util|string_format:"%d"}</td>
                                             <td>{$linha.cartao_produtor}</td>
-                                            <td>{$linha.id_responsavel}</td>
+                                            <td>{$linha.nomeResponsavel}</td>
                                             <td class="">
                                                 <a class="glyphicon glyphicon-refresh"  href="/fazenda/novo/id_fazenda/{$linha.id_fazenda}"></a>
                                                 <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_fazenda});"></a> 

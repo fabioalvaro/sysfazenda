@@ -22,8 +22,26 @@ class animalModel extends model {
     
     /** Retrieve the Entity */
     public function getAnimais($where = null) {
-        $select = array('*');
-        return $this->read($this->tabPadrao, $select, $where, null, null, null, null);
+        $select = array('a.id_animal,
+                         a.data_registro,
+                         a.id_fazenda,
+                         a.numero_brinco,
+                         a.nome,
+                         a.sexo,
+                         a.data_nascimento,
+                         a.peso,
+                         a.tipo_registro,
+                         a.procedencia,
+                         a.caracteristicas,
+                         a.obs,
+                         a.id_mae,
+                         a.id_pai,
+                         a.id_semen,
+                         a.flag_descontinuado,
+                         a.data_descontinuado,
+                         a.motivo_descontinuado,
+                         f.nome as nomeFazenda');
+        return $this->read("{$this->tabPadrao} a left join fazendas f on f.id_fazenda = a.id_fazenda", $select, $where, null, null, null, null);
     }
     
     public function relAnimais(){

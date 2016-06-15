@@ -22,8 +22,13 @@ class caixaModel extends model {
     
     /** Retrieve the Entity */
     public function getCaixas($where = null) {
-        $select = array('*');
-        return $this->read($this->tabPadrao, $select, $where, null, null, null, null);
+        $select = array('c.id_caixa,
+                         c.data_registro,
+                         c.historico,
+                         c.valor,
+                         c.id_fazenda,
+                         f.nome as nomeFazenda');
+        return $this->read("$this->tabPadrao c left join fazendas f on f.id_fazenda = c.id_fazenda" , $select, $where, null, null, null, null);
     }
 
     /** Save a new Entity  */

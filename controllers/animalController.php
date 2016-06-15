@@ -72,7 +72,7 @@ class animal extends controller {
     }
 
     public function gravar() {
-        // var_dump($_POST);
+        //var_dump($_POST);
         $_POST['data_registro'] = implode("-", array_reverse(explode("/", $_POST['data_registro'])));
         $_POST['data_nascimento'] = implode("-", array_reverse(explode("/", $_POST['data_nascimento'])));
         $_POST['data_descontinuado'] = implode("-", array_reverse(explode("/", $_POST['data_descontinuado'])));
@@ -92,8 +92,10 @@ class animal extends controller {
         $data['caracteristicas'] = isset($_POST['caracteristicas']) ? $_POST['caracteristicas'] : '';
         $data['obs'] = isset($_POST['observacao']) ? $_POST['observacao'] : '';
         $data['data_descontinuado'] = isset($_POST['data_descontinuado']) ? $_POST['data_descontinuado'] : '';
-        $data['flag_descontinuado'] = isset($_POST['descontinuado']) ? $_POST['descontinuado'] : 0;
+        $data['flag_descontinuado'] = isset($_POST['descontinuado']) ? 1 : 2;
         $data['motivo_descontinuado'] = isset($_POST['motivo_descontinuado']) ? $_POST['motivo_descontinuado'] : '';
+        
+        //var_dump($data);die;
 
         //var_dump($data);die;
         //gravando os dados

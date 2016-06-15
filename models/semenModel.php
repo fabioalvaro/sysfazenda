@@ -22,8 +22,12 @@ class semenModel extends model {
     
     /** Retrieve the Entity */
     public function getSemen($where = null) {
-        $select = array('*');
-        return $this->read($this->tabPadrao, $select, $where, null, null, null, null);
+        $select = array('s.id_semen,
+                         s.data_registro,
+                         s.id_animal,
+                         s.procedencia,
+                         a.nome as nomeAnimal');
+        return $this->read("{$this->tabPadrao} s left join animais a on a.id_animal = s.id_animal", $select, $where, null, null, null, null);
     }
 
     /** Save a new Entity  */

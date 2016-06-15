@@ -42,11 +42,11 @@
                                     {foreach from=$consultas item="linha"}
                                         <tr>
                                             <td>{$linha.id_consulta}</td>
-                                            <td>{$linha.data_registro}</td>
-                                            <td>{$linha.id_fazenda}</td>
-                                            <td>{$linha.id_animal}</td>
+                                            <td>{$linha.data_registro|date_format:'d/m/Y'}</td>
+                                            <td>{$linha.nomeFazenda}</td>
+                                            <td>{$linha.nomeAnimal}</td>
                                             <td>{$linha.idade}</td>
-                                            <td>{$linha.peso_atual}</td>
+                                            <td>{$linha.peso_atual|string_format:"%.2f"}</td>
                                             <td class="">
                                                 <a class="glyphicon glyphicon-refresh"  href="/consulta/novo/id_consulta/{$linha.id_consulta}"></a>
                                                 <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_consulta});"></a> 

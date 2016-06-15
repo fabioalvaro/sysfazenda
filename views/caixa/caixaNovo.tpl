@@ -24,7 +24,7 @@
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" name="id_caixa" id="id_caixa" value="{$registro.id_caixa|default:''}">
-                                    <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro}" placeholder="Data Registro" name="data_registro">
+                                    <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro|date_format:'d/m/Y'}" placeholder="Data Registro" name="data_registro">
                                 </div>
                             </div>                            
                             <div class="form-group">
@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label for="valor" class="col-sm-2 control-label">Valor</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|default:''}" placeholder="Valor">
+                                    <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|default:''|string_format:"%.2f"}" placeholder="Valor">
                                 </div>
                             </div>                                                                                                                
                             <div class="form-group">

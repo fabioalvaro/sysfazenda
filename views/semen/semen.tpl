@@ -40,8 +40,8 @@
                                     {foreach from=$semen item="linha"}
                                         <tr>
                                             <td>{$linha.id_semen}</td>
-                                            <td>{$linha.data_registro}</td>
-                                            <td>{$linha.id_animal}</td>
+                                            <td>{$linha.data_registro|date_format:'d/m/Y'}</td>
+                                            <td>{$linha.nomeAnimal}</td>
                                             <td>{$linha.procedencia}</td>
                                             <td class="">
                                                 <a class="glyphicon glyphicon-refresh"  href="/semen/novo/id_semen/{$linha.id_semen}"></a>

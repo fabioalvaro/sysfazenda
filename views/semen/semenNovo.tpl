@@ -22,13 +22,13 @@
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" name='id_semen' id="id_semen" value="{$registro.id_semen|default:''}">                                                                        
-                                    <input type="data_registro" class="col-sm-4" id="data_registro" value="{$registro.data_registro|default:''}" placeholder="Data Registro" name="data_registro">                                
+                                    <input type="data_registro" class="col-sm-4" id="data_registro" value="{$registro.data_registro|default:''|date_format:'d/m/Y'}" placeholder="Data Registro" name="data_registro">                                
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="procedencia" class="col-sm-2 control-label">Procedência</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="procedencia" class="form-control" placeholder="Procedência" {$registro.procedencia|default:''} id="procedencia">
+                                    <input type="text" name="procedencia" class="form-control" placeholder="Procedência" value="{$registro.procedencia|default:''}" id="procedencia">
                                 </div>
                             </div>
                             <div class="form-group">
