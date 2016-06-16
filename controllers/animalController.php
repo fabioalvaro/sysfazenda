@@ -94,9 +94,8 @@ class animal extends controller {
         $data['data_descontinuado'] = isset($_POST['data_descontinuado']) ? $_POST['data_descontinuado'] : '';
         $data['flag_descontinuado'] = isset($_POST['descontinuado']) ? 1 : 2;
         $data['motivo_descontinuado'] = isset($_POST['motivo_descontinuado']) ? $_POST['motivo_descontinuado'] : '';
-        
-        //var_dump($data);die;
 
+        //var_dump($data);die;
         //var_dump($data);die;
         //gravando os dados
         $modelAnimal = new animalModel();
@@ -123,18 +122,46 @@ class animal extends controller {
         foreach ($modelFazendas->getFazendas() as $value) {
             $options_fazendas[$value['id_fazenda']] = $value['nome'];
         }
+        $options_relatorios = array(
+            "1" => "Cadastro por Fazenda",
+            "2" => "Controle de Crias",
+            "3" => "Geral"
+        );
+
         $this->smarty->assign('options_fazendas', $options_fazendas);
+        $this->smarty->assign('options_relatorios', $options_relatorios);
         $this->smarty->display('relatorios/pre_relatorio_animais.tpl');
     }
 
     public function rel_animal() {
         //var_dump($_POST);die;
-        //busca as fazendas e os animais delas
-        $modelFazendas = new fazendaModel();
-        $fazendas = $modelFazendas->getFazendas();
+        $modelo         = isset($_POST['modelo']) ? $_POST['modelo'] : 0;
+        $fazenda        = isset($_POST['fazenda']) ? $_POST['fazenda'] : 0;
+        $dataInicial    = isset($_POST['data_inicial']) ? implode("-", array_reverse(explode("/", $_POST['data_inicial']))) : '';
+        $dataFinal      = isset($_POST['data_final']) ? implode("-", array_reverse(explode("/", $_POST['data_final']))) : '';
+        switch ($modelo) {
+            case 1:
+                $this->cadastroPorFazenda($fazenda);
+                break;
+            case 2:
+                $this->controleDeCrias();
+                break;
+            case 3:
+                $this->geral();
+                break;
+        }        
+    }
+
+    public function cadastroPorFazenda($id_fazenda) {
+        $modelFazendas = new fazendaModel();        
+        if($id_fazenda == 0){
+            $fazendas = $modelFazendas->getFazendas();
+        }else{
+            $fazendas = $modelFazendas->getFazendas("f.id_fazenda = {$id_fazenda}");
+        }        
         foreach ($fazendas as $fazenda) {
             $modelAnimais = new animalModel();
-            $regAnimais = $modelAnimais->getAnimais(" id_fazenda = {$fazenda["id_fazenda"]}");
+            $regAnimais = $modelAnimais->getAnimais("f.id_fazenda = {$fazenda["id_fazenda"]}");
             $animais = array();
             foreach ($regAnimais as $animal) {
                 $animais[] = array(
@@ -153,9 +180,17 @@ class animal extends controller {
                 "nome_fazenda" => $fazenda["nome"],
                 "animais" => $animais
             );
-        }
+        }      
         $this->smarty->assign('registros', $registros);
-        $this->smarty->display('relatorios/relatorio_animais.tpl');        
+        $this->smarty->display('relatorios/relatorio_animais.tpl');
+    }
+
+    public function controleDeCrias() {
+        $this->smarty->display('relatorios/controle_crias.tpl');
+    }
+
+    public function geral() {
+        $this->smarty->display('relatorios/geral.tpl');
     }
 
 }

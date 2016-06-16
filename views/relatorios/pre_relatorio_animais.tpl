@@ -23,8 +23,8 @@
                                 <div class="col-xs-3">
                                     <div class="form-group">
                                         <label for="modelo">Modelo Relatório</label>
-                                        <select class="form-control" name="relatorio">                                                
-                                            {html_options options=$options_fazendas}
+                                        <select class="form-control" id="modelo" name="modelo" onchange="alteraFiltro();">                                                
+                                            {html_options options=$options_relatorios}
                                         </select>
                                     </div>
                                 </div>                                    
@@ -39,17 +39,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                                        <div id="filtro" hidden="" class="row">
                                 <div class="col-xs-2">
                                     <div class="form-group">
-                                        <label for="data_registro" >Data Inicial</label>
-                                        <input type="text"  class="form-control" id="data_registro" placeholder="Data Registro" value="{$registro.data_registro|default:''}" name="data_registro">
+                                        <label for="data_inicial" >Data Inicial</label>
+                                        <input type="text"  class="form-control" id="data_inicial" placeholder="Data Inicial" name="data_inicial">
                                     </div>
                                 </div>
                                 <div class="col-xs-2">
                                     <div class="form-group">
-                                        <label for="data_registro" >Data Final</label>                                                                          
-                                        <input type="text" class="form-control" id="data_registro" placeholder="Data Registro" value="{$registro.data_registro|default:''}" name="data_registro">                                       
+                                        <label for="data_final" >Data Final</label>                                                                          
+                                        <input type="text" class="form-control" id="data_final" placeholder="Data Final" name="data_final">                                       
                                     </div>
                                 </div>
                             </div>
@@ -121,6 +121,6 @@
         {include file="comum/footer.tpl"}        
         <link   rel="stylesheet" type="text/css" href="/files/css/datepicker.css">
         <script type="text/javascript" src="/files/js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="/files/js/animal/animal.js"></script>
+        <script type="text/javascript" src="/files/js/relatoriosAnimais/relatoriosAnimal.js"></script>
     </body>
 </html>

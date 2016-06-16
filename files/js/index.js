@@ -3,7 +3,7 @@ $(function() {
   Chart.defaults.global.responsive = true;
   ctx = $('#jumbotron-line-chart').get(0).getContext('2d');
   options = {
-    showScale: false,
+    showScale: true,
     scaleShowGridLines: false,
     scaleGridLineColor: "rgba(0,0,0,.05)",
     scaleGridLineWidth: 0,
@@ -11,7 +11,7 @@ $(function() {
     scaleShowVerticalLines: false,
     bezierCurve: false,
     bezierCurveTension: 0.4,
-    pointDot: false,
+    pointDot: true,
     pointDotRadius: 0,
     pointDotStrokeWidth: 2,
     pointHitDetectionRadius: 20,

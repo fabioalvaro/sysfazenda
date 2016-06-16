@@ -26,7 +26,7 @@
                         </div>
                         </div>*}
                         <div class="card-body">
-                            <table class="table">
+                            <table class="datatable table table-striped" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>#</th>

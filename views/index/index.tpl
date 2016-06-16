@@ -130,5 +130,6 @@
         </div>
 
         {include file="comum/footer.tpl"}
+        <script type="text/javascript" src="/files/js/index.js"></script>
     </body>
 </html>
