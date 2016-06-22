@@ -15,10 +15,12 @@
                         <tr>
                             <th>Nº Brinco</th>                            
                             <th>Sexo</th>                            
+                            <th>Idade Atual</th>
                             <th>Data Nascimento</th>
-                            <th>Idade</th>
-                            <th>Nº Brinco Pai</th>
+                            <th>Nº Brinco Mãe</th>
+                            <th>Brinco Pai</th>
                             <th>Tipo Registro</th>
+                            <th>Caracteristicas</th>
                             <th>Observações</th>
                         </tr>
                     </thead>
@@ -26,11 +28,13 @@
                         {foreach from=$linha_fazenda.animais item="linha_animais"}
                             <tr>
                                 <td>{$linha_animais.numero_brinco}</td> 
-                                <td>{$linha_animais.nome}</td>
-                                <td>{$linha_animais.sexo}</td>                                
-                                <td>{$linha_animais.data_nascimento|date_format:'d/m/Y'}</td>
+                                <td>{$linha_animais.sexo}</td>
                                 <td>{$linha_animais.idade}</td>                                
-                                <td>{$linha_animais.obs}</td>
+                                <td>{$linha_animais.data_nascimento|date_format:'d/m/Y'}</td>
+                                <td>{$linha_animais.brinco_mae}</td>                                
+                                <td>{$linha_animais.brinco_pai}</td>
+                                <td>{$linha_animais.tipo_registro}</td>
+                                <td>{$linha_animais.caracteristicas}</td>
                                 <td>{$linha_animais.obs}</td>
                             </tr>
                         {foreachelse}

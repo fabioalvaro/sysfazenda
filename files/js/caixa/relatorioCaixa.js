@@ -8,11 +8,11 @@ $(document).ready(function () {
         language: 'pt-BR'
     });
 });
-
-function alteraFiltro(){
-    if($("#modelo").val() == 2){
-        $("#filtro").show("slow");
-    }else{
-        $("#filtro").hide("slow");
-    }
-}
+//
+//function alteraFiltro(){
+//    if($("#modelo").val() == 2){
+//        $("#filtro").show("slow");
+//    }else{
+//        $("#filtro").hide("slow");
+//    }
+//}

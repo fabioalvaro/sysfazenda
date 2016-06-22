@@ -68,7 +68,13 @@
                                         {html_options options=$options_crias|default:'' selected=$registro.cria}
                                     </select>
                                 </div>
-                            </div>                            
+                            </div>
+                            <div class="form-group">
+                                <label for="descricao" class="col-sm-2 control-label">Descrição</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="descricao" name="descricao" value="{$registro.descricao|default:''}" placeholder="Descrição">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 {*                                <label for="area_util" class="col-sm-2 control-label">Área Útil</label>*}
                                 <div class="col-sm-4">

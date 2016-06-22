@@ -19,7 +19,22 @@ class animalModel extends model {
         return $dados;
     }
 
-    
+    public function getCrias($where = null){
+        $select = array('a.numero_brinco,
+                         a.sexo,
+                         a.data_nascimento,
+                         c.idade,
+                         a.tipo_registro,                         
+                         a.obs,
+                         a.caracteristicas,
+                         m.numero_brinco as brincoMae,
+                         cm.idade as idadeMae,
+                         p.numero_brinco as brincoPai');
+        return $this->read("{$this->tabPadrao} a left join consultas c on c.id_animal = a.id_animal 
+                            left join animais m on m.id_animal = a.id_mae                            
+                            left join consultas cm on cm.id_animal = a.id_mae
+                            left join animais p on p.id_animal = a.id_pai", $select, $where, "a.id_animal", null, null, "m.numero_brinco");
+    }
     /** Retrieve the Entity */
     public function getAnimais($where = null) {
         $select = array('a.id_animal,
@@ -40,8 +55,9 @@ class animalModel extends model {
                          a.flag_descontinuado,
                          a.data_descontinuado,
                          a.motivo_descontinuado,
-                         f.nome as nomeFazenda');
-        return $this->read("{$this->tabPadrao} a left join fazendas f on f.id_fazenda = a.id_fazenda", $select, $where, null, null, null, null);
+                         f.nome as nomeFazenda,
+                         c.idade');
+        return $this->read("{$this->tabPadrao} a left join fazendas f on f.id_fazenda = a.id_fazenda left join consultas c on a.id_animal = c.id_animal", $select, $where, null, null, null, null);
     }
     
     public function relAnimais(){

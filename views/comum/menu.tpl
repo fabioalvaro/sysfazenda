@@ -123,6 +123,7 @@
                                         <ul class="nav navbar-nav">
                                             <li><a href="/animal/relatorio">Animais</a></li>
                                             <li><a href="/consulta/relatorio">Consultas</a></li>
+                                            <li><a href="/caixa/relatorio">Caixa</a></li>
                                         </ul>
                                     </div>
                                 </div>

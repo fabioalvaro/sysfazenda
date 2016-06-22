@@ -19,7 +19,7 @@ class animal extends controller {
         if ((bool) $id_animal) {
             //buscando o animal
             $modelAnimal = new animalModel();
-            $registro = $modelAnimal->getAnimais("id_animal = {$id_animal}");
+            $registro = $modelAnimal->getAnimais("a.id_animal = {$id_animal}");
             $registro = $registro[0];
         }
         //buscando as Fazendas
@@ -135,30 +135,30 @@ class animal extends controller {
 
     public function rel_animal() {
         //var_dump($_POST);die;
-        $modelo         = isset($_POST['modelo']) ? $_POST['modelo'] : 0;
-        $fazenda        = isset($_POST['fazenda']) ? $_POST['fazenda'] : 0;
-        $dataInicial    = isset($_POST['data_inicial']) ? implode("-", array_reverse(explode("/", $_POST['data_inicial']))) : '';
-        $dataFinal      = isset($_POST['data_final']) ? implode("-", array_reverse(explode("/", $_POST['data_final']))) : '';
+        $modelo = isset($_POST['modelo']) ? $_POST['modelo'] : 0;
+        $fazenda = isset($_POST['fazenda']) ? $_POST['fazenda'] : 0;
+        $dataInicial = isset($_POST['data_inicial']) ? implode("-", array_reverse(explode("/", $_POST['data_inicial']))) : '';
+        $dataFinal = isset($_POST['data_final']) ? implode("-", array_reverse(explode("/", $_POST['data_final']))) : '';
         switch ($modelo) {
             case 1:
                 $this->cadastroPorFazenda($fazenda);
                 break;
             case 2:
-                $this->controleDeCrias();
+                $this->controleDeCrias($fazenda,$dataInicial,$dataFinal);
                 break;
             case 3:
-                $this->geral();
+                $this->geral($fazenda);
                 break;
-        }        
+        }
     }
 
     public function cadastroPorFazenda($id_fazenda) {
-        $modelFazendas = new fazendaModel();        
-        if($id_fazenda == 0){
+        $modelFazendas = new fazendaModel();
+        if ($id_fazenda == 0) {
             $fazendas = $modelFazendas->getFazendas();
-        }else{
+        } else {
             $fazendas = $modelFazendas->getFazendas("f.id_fazenda = {$id_fazenda}");
-        }        
+        }
         foreach ($fazendas as $fazenda) {
             $modelAnimais = new animalModel();
             $regAnimais = $modelAnimais->getAnimais("f.id_fazenda = {$fazenda["id_fazenda"]}");
@@ -170,7 +170,7 @@ class animal extends controller {
                     "sexo" => $animal['sexo'],
                     "classificacao" => "",
                     "data_nascimento" => $animal['data_nascimento'],
-                    "idade" => "",
+                    "idade" => $animal['idade'],
                     "peso" => $animal['peso'],
                     "observacao" => $animal['obs'],
                 );
@@ -180,16 +180,89 @@ class animal extends controller {
                 "nome_fazenda" => $fazenda["nome"],
                 "animais" => $animais
             );
-        }      
+        }
         $this->smarty->assign('registros', $registros);
         $this->smarty->display('relatorios/relatorio_animais.tpl');
     }
 
-    public function controleDeCrias() {
+    public function controleDeCrias($id_fazenda, $data_inicial, $data_final) {
+        $modelFazendas = new fazendaModel();
+        if ($id_fazenda == 0) {
+            $fazendas = $modelFazendas->getFazendas();
+        } else {
+            $fazendas = $modelFazendas->getFazendas("f.id_fazenda = {$id_fazenda}");
+        }       
+        foreach ($fazendas as $fazenda) {
+            $where = "a.id_animal in (select cria from consultas where cria > 0) and a.id_fazenda = {$fazenda['id_fazenda']}";
+            if (!empty($data_inicial) && !empty($data_final)) {
+                $where = $where . " and a.data_registro >= '{$data_inicial}' and a.data_registro <= '{$data_final}'";
+            }
+            $modelAnimais = new animalModel();
+            $criasTemp = array();
+            //busca as crias
+            $crias = $modelAnimais->getCrias($where);
+            foreach ($crias as $cria) {
+                //var_dump($cria);die;
+                $criasTemp[] = array(
+                    "brinco_mae" => $cria['brincoMae'],
+                    "idade_mae" => $cria['idadeMae'],
+                    "brinco_pai" => $cria['brincoPai'],
+                    "numero_brinco" => $cria['numero_brinco'],
+                    "sexo" => $cria['sexo'],
+                    "data_nascimento" => $cria['data_nascimento'],
+                    "idade_atual" => $cria['idade'],
+                    "tipo_registro" => $cria['tipo_registro'],
+                    "observacao" => $cria['obs']
+                );
+            }
+            $registros[] = array(
+                "nome_fazenda" => $fazenda["nome"],
+                "crias" => $criasTemp
+            );
+        }
+        //print_r($registros);die;
+        $this->smarty->assign('registros', $registros);
         $this->smarty->display('relatorios/controle_crias.tpl');
     }
 
-    public function geral() {
+    public function geral($id_fazenda) {
+        $modelFazendas = new fazendaModel();
+        if ($id_fazenda == 0) {
+            $fazendas = $modelFazendas->getFazendas();
+        } else {
+            $fazendas = $modelFazendas->getFazendas("f.id_fazenda = {$id_fazenda}");
+        }       
+        foreach ($fazendas as $fazenda) {
+            $where = "a.id_fazenda = {$fazenda['id_fazenda']}";
+//            if (!empty($data_inicial) && !empty($data_final)) {
+//                $where = $where . " and a.data_registro >= '{$data_inicial}' and a.data_registro <= '{$data_final}'";
+//            }
+            $modelAnimais = new animalModel();
+            $animaisTemp = array();
+            //busca as crias
+            $crias = $modelAnimais->getCrias($where);
+            foreach ($crias as $cria) {
+                //var_dump($cria);die;
+                $animaisTemp[] = array(
+                    "numero_brinco" => $cria['numero_brinco'],
+                    "sexo" => $cria['sexo'],
+                    "idade" => $cria['idade'],
+                    "data_nascimento" => $cria['data_nascimento'],
+                    "brinco_mae" => $cria['brincoMae'],                    
+                    "brinco_pai" => $cria['brincoPai'],
+                    "tipo_registro" => $cria['tipo_registro'],
+                    "caracteristicas" => $cria['caracteristicas'],
+                    "idade_atual" => $cria['idade'],                    
+                    "obs" => $cria['obs']
+                );
+            }
+            $registros[] = array(
+                "nome_fazenda" => $fazenda["nome"],
+                "animais" => $animaisTemp
+            );
+        }
+        //print_r($registros);die;
+        $this->smarty->assign('registros', $registros);
         $this->smarty->display('relatorios/geral.tpl');
     }
 

@@ -71,6 +71,7 @@ class consulta extends controller {
         $data['id_fazenda'] = isset($_POST['fazenda']) ? $_POST['fazenda'] : '';
         $data['peso_atual'] = isset($_POST['peso_atual']) ? $_POST['peso_atual'] : 0;
         $data['cria'] = isset($_POST['cria']) ? $_POST['cria'] : 0;
+        $data['descricao'] = isset($_POST['descricao']) ? $_POST['descricao'] : 0;
         //gravando os dados
         $modelConsulta = new consultaModel();
         if (!(bool) $data['id_consulta']) {
@@ -87,6 +88,86 @@ class consulta extends controller {
         $modelConsulta = new consultaModel();
         $modelConsulta->delConsulta($data);
         header('Location: /consulta');
+    }
+
+    public function relatorio() {
+        //buscando as Fazendas
+        $modelFazendas = new fazendaModel();
+        $options_fazendas = array('0' => 'TODAS');
+        foreach ($modelFazendas->getFazendas() as $value) {
+            $options_fazendas[$value['id_fazenda']] = $value['nome'];
+        }
+
+        $this->smarty->assign('options_fazendas', $options_fazendas);
+        $this->smarty->display('relatorios/pre_relatorio_consultas.tpl');
+    }
+
+    public function rel_consulta() {
+        $fazenda = isset($_POST['fazenda']) ? $_POST['fazenda'] : 0;
+        $this->relatorioGeral($fazenda);
+    }
+
+    public function relatorioGeral($id_fazenda) {
+        $modelFazendas = new fazendaModel();
+        if ($id_fazenda == 0) {
+            $fazendas = $modelFazendas->getFazendas();
+        } else {
+            $fazendas = $modelFazendas->getFazendas("f.id_fazenda = {$id_fazenda}");
+        }
+        foreach ($fazendas as $fazenda) {
+            $where = "c.id_fazenda = {$fazenda['id_fazenda']}";
+//            if (!empty($data_inicial) && !empty($data_final)) {
+//                $where = $where . " and a.data_registro >= '{$data_inicial}' and a.data_registro <= '{$data_final}'";
+//            }
+            $modelConsultas = new consultaModel();
+            $consultasTemp = array();
+            //busca as crias
+            $consultas = $modelConsultas->getConsultasAnimais($where);
+            foreach ($consultas as $consulta) {
+                switch ($consulta['tipo_registro']) {
+                    case 0:
+                        $consulta['tipo_registro'] = 'Vazio';
+                        break;
+                    case 1:
+                        $consulta['tipo_registro'] = 'Vacina';
+                        break;
+                    case 2:
+                        $consulta['tipo_registro'] = 'Maternidade';
+                        break;
+                    case 3:
+                        $consulta['tipo_registro'] = 'Inseminação';
+                        break;
+                    case 4:
+                        $consulta['tipo_registro'] = 'Veterinário';
+                        break;
+                    case 5:
+                        $consulta['tipo_registro'] = 'Pesagem';
+                        break;
+                    case 6:
+                        $consulta['tipo_registro'] = 'Transferência';
+                        break;
+                }
+                //var_dump($consulta);die;
+                $consultasTemp[] = array(
+                    "numero_brinco" => $consulta['numero_brinco'],
+                    "data_nascimento" => $consulta['data_nascimento'],
+                    "sexo" => $consulta['sexo'],
+                    "idade" => $consulta['idade'],
+                    "tipo_registro" => $consulta['tipo_registro'],
+                    "data_registro" => $consulta['data_registro'],
+                    "peso_atual" => $consulta['peso_atual'],
+                    "semen" => $consulta['id_semen'],
+                    "descricao" => $consulta['descricao']
+                );
+            }
+            $registros[] = array(
+                "nome_fazenda" => $fazenda["nome"],
+                "consultas" => $consultasTemp
+            );
+        }
+        //print_r($registros);die;
+        $this->smarty->assign('registros', $registros);
+        $this->smarty->display('relatorios/consultaGeral.tpl');
     }
 
 }

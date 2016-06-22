@@ -33,7 +33,7 @@
                                 <td>{$linha_animais.data_nascimento|date_format:'d/m/Y'}</td>
                                 <td>{$linha_animais.idade}</td>
                                 <td>{$linha_animais.peso|string_format:"%.2f"}</td>
-                                <td>{$linha_animais.obs}</td>
+                                <td>{$linha_animais.observacao}</td>
                             </tr>
                         {foreachelse}
                             <tr><td colspan="6">Nenhum registro encontrado</td></tr>
