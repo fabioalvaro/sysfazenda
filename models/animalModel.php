@@ -35,6 +35,17 @@ class animalModel extends model {
                             left join consultas cm on cm.id_animal = a.id_mae
                             left join animais p on p.id_animal = a.id_pai", $select, $where, "a.id_animal", null, null, "m.numero_brinco");
     }
+    
+    public function getAnimaisPorFazenda(){
+        $select = array('f.nome,count(*) as total');
+        return $this->read("{$this->tabPadrao} a left join fazendas f on f.id_fazenda = a.id_fazenda", $select, null, "a.id_fazenda", null, null, null);
+    }
+    
+    public function getAnimaisPorSexo(){
+        $select = array('a.sexo,count(*) as total ');
+        return $this->read("{$this->tabPadrao} a", $select, null, "a.sexo", null, null, null);
+    }
+    
     /** Retrieve the Entity */
     public function getAnimais($where = null) {
         $select = array('a.id_animal,

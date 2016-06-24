@@ -18,6 +18,12 @@ class consultaModel extends model {
         return $dados;
     }
 
+    public function getNascimentosPorData(){
+        $select = array('c.data_registro,count(*) as total');
+        $where = "";
+        return $this->read("{$this->tabPadrao} c", $select, $where, "c.data_registro", null, null, null);
+    }    
+    
     /** Retrieve the Entity */
     public function getConsultas($where = null) {
         $select = array('c.id_consulta,
@@ -38,7 +44,6 @@ class consultaModel extends model {
 
     /** Save a new Entity  */
     public function setConsulta($array) {
-
         $this->startTransaction();
         $id = $this->transaction($this->insert($this->tabPadrao, $array, false));
         $this->commit();
