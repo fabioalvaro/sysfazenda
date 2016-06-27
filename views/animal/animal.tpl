@@ -48,7 +48,7 @@
                                             <td>{$linha.nome}</td>
                                             <td>{$linha.numero_brinco}</td>
                                             <td>{$linha.sexo}</td>
-                                            <td>{$linha.peso|string_format:"%.2f"}</td>
+                                            <td>{$linha.peso|number_format:2:",":"."}</td>
                                             <td class="">
                                                 <a class="glyphicon glyphicon-refresh"  href="/animal/novo/id_animal/{$linha.id_animal}"></a>
                                                 <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_animal});"></a> 

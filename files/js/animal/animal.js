@@ -20,3 +20,11 @@ function confirmaExcluir(id_animal) {
 
     }
 }
+
+function escondeDescontinuado(){    
+    if($("#descontinuado:checked").length > 0){
+        $("#desc").show("slow");
+    }else{
+        $("#desc").hide("slow");
+    }
+}

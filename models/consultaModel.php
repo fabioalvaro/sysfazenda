@@ -20,8 +20,8 @@ class consultaModel extends model {
 
     public function getNascimentosPorData(){
         $select = array('c.data_registro,count(*) as total');
-        $where = "";
-        return $this->read("{$this->tabPadrao} c", $select, $where, "c.data_registro", null, null, null);
+        $where = "c.tipo_registro = 2";
+        return $this->read("{$this->tabPadrao} c", $select, $where, "c.data_registro", "30", null, null);
     }    
     
     /** Retrieve the Entity */

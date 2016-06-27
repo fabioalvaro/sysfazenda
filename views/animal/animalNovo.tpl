@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <label for="peso" class="col-sm-2 control-label">Peso</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="peso" id="peso" value="{$registro.peso|default:''|string_format:"%.2f"}" placeholder="peso">
+                                    <input type="text" class="form-control" name="peso" id="peso" value="{$registro.peso|default:''|number_format:2:",":"."}" placeholder="peso">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -120,10 +120,10 @@
                             <div class="form-group">
                                 <label for="descontinuado" class="col-sm-2 control-label">Descontinuado</label>
                                 <div class="col-sm-4">
-                                    <input type="checkbox" class="form-control" id="descontinuado" name="descontinuado" {if $registro.flag_descontinuado == 1}checked="true"{/if} >
+                                    <input type="checkbox" class="form-control" id="descontinuado" name="descontinuado" {if $registro.flag_descontinuado == 1} checked="true"{/if} onclick="escondeDescontinuado();">
                                 </div>
                             </div>
-                            <div>
+                            <div id="desc">
                                 <div class="form-group">
                                     <label for="data_descontinuado" class="col-sm-2 control-label">Data Descontinuado</label>
                                     <div class="col-sm-4">                                        

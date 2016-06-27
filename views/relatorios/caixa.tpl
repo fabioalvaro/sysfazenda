@@ -21,16 +21,16 @@
                     <tbody>
                         {foreach from=$linha_fazenda.caixas item="linha_caixas"}
                             <tr>
-                                <td>{$linha_caixas.data_registro}</td> 
+                                <td>{$linha_caixas.data_registro|date_format:'d/m/Y'}</td> 
                                 <td>{$linha_caixas.historico}</td>
-                                <td>{$linha_caixas.valor}</td>                                                                
+                                <td>{$linha_caixas.valor|number_format:2:",":"."}</td>                                                                
                             </tr>
                         {foreachelse}
                             <tr><td colspan="6">Nenhum registro encontrado</td></tr>
                         {/foreach}        
                     </tbody>
                 </table>
-                <h1>Total: {$linha_fazenda.saldoFinal} </h1>
+                <h1>Total: {$linha_fazenda.saldoFinal|number_format:2:",":"."} </h1>
             {foreachelse}
                 <tr><td colspan="6">Nenhum registro encontrado</td></tr>
             {/foreach}

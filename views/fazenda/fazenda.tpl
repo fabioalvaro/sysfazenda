@@ -45,8 +45,8 @@
                                             <td>{$linha.id_fazenda}</td>
                                             <td>{$linha.nome}</td>
                                             <td>{$linha.localidade}</td>                                            
-                                            <td>{$linha.area_total|string_format:"%d"}</td>
-                                            <td>{$linha.area_util|string_format:"%d"}</td>
+                                            <td>{$linha.area_total|number_format:0:"":"."}</td>
+                                            <td>{$linha.area_util|number_format:0:"":"."}</td>
                                             <td>{$linha.cartao_produtor}</td>
                                             <td>{$linha.nomeResponsavel}</td>
                                             <td class="">

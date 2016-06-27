@@ -34,13 +34,13 @@
                             <div class="form-group">
                                 <label for="area_total" class="col-sm-2 control-label">Área Total</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="area_total" value="{$registro.area_total|default:''|string_format:"%d"}" class="form-control" id="areaTotal" placeholder="Área Total">
+                                    <input type="text" name="area_total" value="{$registro.area_total|default:''|number_format:0:"":"."}" class="form-control" id="areaTotal" placeholder="Área Total">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="area_util" class="col-sm-2 control-label">Área Útil</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="area_util" value="{$registro.area_util|default:''|string_format:"%d"}" id="areaUtil" placeholder="Área Útil">
+                                    <input type="text" class="form-control" name="area_util" value="{$registro.area_util|default:''|number_format:0:"":"."}" id="areaUtil" placeholder="Área Útil">
                                 </div>
                             </div>
                             <div class="form-group">

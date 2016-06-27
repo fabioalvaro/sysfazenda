@@ -44,7 +44,7 @@
                                             <td>{$linha.data_registro|date_format:'d/m/Y'}</td>
                                             <td>{$linha.nomeFazenda}</td>
                                             <td>{$linha.historico}</td>
-                                            <td>{$linha.valor|string_format:"%.2f"}</td>
+                                            <td>{$linha.valor|number_format:2:",":"."}</td>
                                             <td class="">
                                                 <a class="glyphicon glyphicon-refresh"  href="/caixa/novo/id_caixa/{$linha.id_caixa}"></a>
                                                 <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_caixa});"></a> 

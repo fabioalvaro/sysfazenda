@@ -46,7 +46,7 @@
                                             <td>{$linha.nomeFazenda}</td>
                                             <td>{$linha.nomeAnimal}</td>
                                             <td>{$linha.idade}</td>
-                                            <td>{$linha.peso_atual|string_format:"%.2f"}</td>
+                                            <td>{$linha.peso_atual|number_format:2:",":"."}</td>
                                             <td class="">
                                                 <a class="glyphicon glyphicon-refresh"  href="/consulta/novo/id_consulta/{$linha.id_consulta}"></a>
                                                 <a class="glyphicon glyphicon-trash" onclick="confirmaExcluir({$linha.id_consulta});"></a> 

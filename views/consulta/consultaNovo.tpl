@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label for="peso_atual" class="col-sm-2 control-label">Peso Atual</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="peso_atual" id="peso_atual" value="{$registro.peso_atual|string_format:"%.2f"}" placeholder="Peso Atual">
+                                    <input type="text" class="form-control" name="peso_atual" id="peso_atual" value="{$registro.peso_atual|number_format:2:",":"."}" placeholder="Peso Atual">
                                 </div>
                             </div>
                             <div class="form-group">

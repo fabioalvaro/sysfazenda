@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label for="valor" class="col-sm-2 control-label">Valor</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|default:''|string_format:"%.2f"}" placeholder="Valor">
+                                    <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|default:''|number_format:2:",":"."}" placeholder="Valor">
                                 </div>
                             </div>                                                                                                                
                             <div class="form-group">
