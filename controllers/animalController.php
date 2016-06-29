@@ -5,7 +5,7 @@ class animal extends controller {
     public function index_action() {
         if (util::isLogado()) {
             $modelAnimal = new animalModel();
-            $animais = $modelAnimal->getAnimais();
+            $animais = $modelAnimal->getAnimais(null,'a.id_animal');
             $this->smarty->assign('animais', $animais);
             $this->smarty->display('animal/animal.tpl');
         } else {
@@ -49,7 +49,7 @@ class animal extends controller {
         $modelSemen = new semenModel();
         $options_semen = array('' => 'SELECIONE');
         foreach ($modelSemen->getSemen() as $value) {
-            $options_semen[$value['id_semen']] = $value['id_semen'];
+            $options_semen[$value['id_semen']] = $value['nomeAnimal'];
         }
         $this->smarty->assign('options_semen', $options_semen);
 
@@ -161,7 +161,7 @@ class animal extends controller {
         }
         foreach ($fazendas as $fazenda) {
             $modelAnimais = new animalModel();
-            $regAnimais = $modelAnimais->getAnimais("f.id_fazenda = {$fazenda["id_fazenda"]}");
+            $regAnimais = $modelAnimais->getAnimais("f.id_fazenda = {$fazenda["id_fazenda"]}","a.id_animal");
             $animais = array();
             foreach ($regAnimais as $animal) {
                 $animais[] = array(
@@ -202,7 +202,25 @@ class animal extends controller {
             //busca as crias
             $crias = $modelAnimais->getCrias($where);
             foreach ($crias as $cria) {
-                //var_dump($cria);die;
+                //tipo registro
+                $tipo_registro = '';
+                switch ($cria['tipo_registro']) {
+                    case 1:
+                        $tipo_registro = 'Natural';
+                        break;
+                    case 2:
+                        $tipo_registro = 'Inseminado';
+                        break;
+                    case 3:
+                        $tipo_registro = 'Compra';
+                        break;
+                    case 4:
+                        $tipo_registro = 'Transferido';
+                        break;
+                    default:
+                        $tipo_registro = '';
+                        break;
+                }
                 $criasTemp[] = array(
                     "brinco_mae" => $cria['brincoMae'],
                     "idade_mae" => $cria['idadeMae'],
@@ -211,7 +229,7 @@ class animal extends controller {
                     "sexo" => $cria['sexo'],
                     "data_nascimento" => $cria['data_nascimento'],
                     "idade_atual" => $cria['idade'],
-                    "tipo_registro" => $cria['tipo_registro'],
+                    "tipo_registro" => $tipo_registro,
                     "observacao" => $cria['obs']
                 );
             }
@@ -242,7 +260,25 @@ class animal extends controller {
             //busca as crias
             $crias = $modelAnimais->getCrias($where);
             foreach ($crias as $cria) {
-                //var_dump($cria);die;
+                //tipo registro
+                $tipo_registro = '';
+                switch ($cria['tipo_registro']) {
+                    case 1:
+                        $tipo_registro = 'Natural';
+                        break;
+                    case 2:
+                        $tipo_registro = 'Inseminado';
+                        break;
+                    case 3:
+                        $tipo_registro = 'Compra';
+                        break;
+                    case 4:
+                        $tipo_registro = 'Transferido';
+                        break;
+                    default:
+                        $tipo_registro = '';
+                        break;
+                }
                 $animaisTemp[] = array(
                     "numero_brinco" => $cria['numero_brinco'],
                     "sexo" => $cria['sexo'],
@@ -250,7 +286,7 @@ class animal extends controller {
                     "data_nascimento" => $cria['data_nascimento'],
                     "brinco_mae" => $cria['brincoMae'],                    
                     "brinco_pai" => $cria['brincoPai'],
-                    "tipo_registro" => $cria['tipo_registro'],
+                    "tipo_registro" => $tipo_registro,
                     "caracteristicas" => $cria['caracteristicas'],
                     "idade_atual" => $cria['idade'],                    
                     "obs" => $cria['obs']

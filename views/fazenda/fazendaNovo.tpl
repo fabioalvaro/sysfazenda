@@ -17,7 +17,8 @@
                         <form  class="form-horizontal" 
                                name="frmFazenda" 
                                action="/fazenda/gravar" 
-                               method="POST" >                        
+                               method="POST" 
+                               onsubmit = "return validaForm();">                        
                             <div class="form-group">
                                 <label for="nome" class="col-sm-2 control-label">Nome</label>
                                 <div class="col-sm-4">
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="/files/js/fazenda/fazenda.js"></script>
         {include file="comum/footer.tpl"}
     </body>
 </html>

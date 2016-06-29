@@ -5,3 +5,14 @@ function confirmaExcluir(id_fazenda) {
 
     }
 }
+
+function validaForm() {
+    var validado = true;     
+    if ($("#nome").val().trim() === '') {
+        alert('INSIRA O NOME DA FAZENDA');
+        validado = false;
+    }    
+    
+
+    return validado;
+}

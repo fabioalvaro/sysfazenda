@@ -156,7 +156,7 @@ class consulta extends controller {
                     "tipo_registro" => $consulta['tipo_registro'],
                     "data_registro" => $consulta['data_registro'],
                     "peso_atual" => $consulta['peso_atual'],
-                    "semen" => $consulta['id_semen'],
+                    "semen" => $consulta['nome'],
                     "descricao" => $consulta['descricao']
                 );
             }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         {include file="comum/head.tpl"}
     </head>
@@ -19,22 +19,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {foreach from=$linha_fazenda.caixas item="linha_caixas"}
+                        {foreach from=$linha_fazenda.caixas item="linha_caixas" name="total"}
                             <tr>
                                 <td>{$linha_caixas.data_registro|date_format:'d/m/Y'}</td> 
                                 <td>{$linha_caixas.historico}</td>
                                 <td>{$linha_caixas.valor|number_format:2:",":"."}</td>                                                                
                             </tr>
+                            {if $smarty.foreach.total.last}
+                                <td></td>
+                                <td></td>
+                                <td><h2>Total: {$linha_fazenda.saldoFinal|number_format:2:",":"."} </h2></td>
+                            {/if}
                         {foreachelse}
                             <tr><td colspan="6">Nenhum registro encontrado</td></tr>
                         {/foreach}        
                     </tbody>
-                </table>
-                <h1>Total: {$linha_fazenda.saldoFinal|number_format:2:",":"."} </h1>
+                </table>                
             {foreachelse}
                 <tr><td colspan="6">Nenhum registro encontrado</td></tr>
-            {/foreach}
-            
-        </div>
+            {/foreach}            
+        </div>    
     </body>
 </html>

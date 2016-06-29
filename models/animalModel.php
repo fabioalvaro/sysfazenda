@@ -47,7 +47,7 @@ class animalModel extends model {
     }
     
     /** Retrieve the Entity */
-    public function getAnimais($where = null) {
+    public function getAnimais($where = null,$groupBy = null) {
         $select = array('a.id_animal,
                          a.data_registro,
                          a.id_fazenda,
@@ -68,7 +68,7 @@ class animalModel extends model {
                          a.motivo_descontinuado,
                          f.nome as nomeFazenda,
                          c.idade');
-        return $this->read("{$this->tabPadrao} a left join fazendas f on f.id_fazenda = a.id_fazenda left join consultas c on a.id_animal = c.id_animal", $select, $where, null, null, null, null);
+        return $this->read("{$this->tabPadrao} a left join fazendas f on f.id_fazenda = a.id_fazenda left join consultas c on a.id_animal = c.id_animal", $select, $where, $groupBy, null, null, null);
     }
     
     public function relAnimais(){

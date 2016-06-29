@@ -97,7 +97,7 @@ class caixa extends controller {
         $data['id_caixa'] = isset($_POST['id_caixa']) ? $_POST['id_caixa'] : 0;
         $data['data_registro'] = isset($_POST['data_registro']) ? $_POST['data_registro'] : '';
         $data['historico'] = isset($_POST['historico']) ? $_POST['historico'] : 0;
-        $data['valor'] = isset($_POST['valor']) ? $_POST['valor'] : '';
+        $data['valor'] = isset($_POST['valor']) ?  str_replace(',','.',$_POST['valor']) : '';
         $data['id_fazenda'] = isset($_POST['fazenda']) ? $_POST['fazenda'] : '';
 
         //var_dump($data);die;

@@ -79,9 +79,11 @@ class consultaModel extends model {
                          c.data_registro,
                          c.peso_atual,
                          a.id_semen,
+                         b.nome,
                          c.descricao');
         return $this->read("{$this->tabPadrao} c 
-                            left join animais a on a.id_animal = c.id_animal", $select, $where, null, null, null, "a.id_animal,c.data_registro desc");
+                            left join animais a on a.id_animal = c.id_animal
+                            left join animais b on b.id_animal = a.id_semen", $select, $where, null, null, null, "a.id_animal,c.data_registro desc");
     }
 
 }
