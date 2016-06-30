@@ -17,15 +17,16 @@
                         <form  class="form-horizontal" 
                                name="frmConsulta" 
                                action="/consulta/gravar" 
-                               method="POST" >                        
-                            <div class="form-group">
+                               method="POST" 
+                               onsubmit="return validaForm();">                        
+                            <div class="form-group has-error">
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" value="{$registro.id_consulta}" name="id_consulta" id="id_consulta">
                                     <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro|date_format:'d/m/Y'}" placeholder="Data Registro" name="data_registro">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="fazenda" class="col-sm-2 control-label">Fazenda</label>
                                 <div class="col-sm-4">
                                     <select id="fazenda" name="fazenda" class="col-xs-12">
@@ -33,7 +34,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="animal" class="col-sm-2 control-label">Animal</label>
                                 <div class="col-sm-4">
                                     <select id="animal" name="animal" class="col-xs-12">
@@ -53,7 +54,7 @@
                                     <input type="text" class="form-control" name="peso_atual" id="peso_atual" value="{$registro.peso_atual|number_format:2:",":"."}" placeholder="Peso Atual">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="tipo_registro" class="col-sm-2 control-label">Tipo Registro</label>
                                 <div class="col-sm-4">
                                     <select id="tipo_registro" name="tipo_registro" class="col-xs-12">

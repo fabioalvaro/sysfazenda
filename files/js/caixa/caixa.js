@@ -12,3 +12,36 @@ function confirmaExcluir(id_caixa) {
 
     }
 }
+
+function validaForm() {
+    var validado = true;
+    var texto = '';
+   
+    if ($("#data_registro").val().trim() === '') {
+        texto = 'Favor informar a data do registro';
+        validado = false;
+    }
+    
+    if ($("#fazenda").val().trim() === '') {
+        texto = texto + ' Favor informar a fazenda';
+        validado = false;
+    }
+    
+    if ($("#valor").val().trim() === '') {
+        texto = texto + ' Favor informar o valor';
+        validado = false;
+    }        
+    
+    if (!validado) {
+        $.toast({
+            heading: 'Erro de Validação',
+            text: texto,
+            position: 'mid-center',
+            showHideTransition: 'slide',
+            icon: 'error'
+        });
+    }
+
+
+    return validado;
+}

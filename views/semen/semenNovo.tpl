@@ -17,8 +17,9 @@
                         <form  class="form-horizontal" 
                                name="frmSemen" 
                                action="/semen/gravar" 
-                               method="POST" >                        
-                            <div class="form-group">
+                               method="POST" 
+                               onsubmit="return validaForm();">                        
+                            <div class="form-group has-error">
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" name='id_semen' id="id_semen" value="{$registro.id_semen|default:''}">                                                                        
@@ -31,7 +32,7 @@
                                     <input type="text" name="procedencia" class="form-control" placeholder="Procedência" value="{$registro.procedencia|default:''}" id="procedencia">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="animal" class="col-sm-2 control-label">Animal</label>
                                 <div class="col-sm-4">
                                     <select id="animal" name="animal" class="col-xs-12">

@@ -20,6 +20,7 @@
 <link rel="stylesheet" type="text/css" href="/files/css/select2.min.css">
 <!-- CSS App -->
 <link rel="stylesheet" type="text/css" href="/files/css/style.css">
+<link rel="stylesheet" type="text/css" href="/files/css/jquery.toast.min.css">
 <link rel="stylesheet" type="text/css" href="/files/css/themes/flat-blue.css">
 
 <style>

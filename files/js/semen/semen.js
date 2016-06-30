@@ -12,3 +12,31 @@ function confirmaExcluir(id_semen) {
 
     }
 }
+
+function validaForm() {
+    var validado = true;
+    var texto = '';
+   
+    if ($("#data_registro").val().trim() === '') {
+        texto = 'Favor informar a data do registro';
+        validado = false;
+    }
+    
+    if ($("#animal").val().trim() === '') {
+        texto = texto + ' Favor informar o animal';
+        validado = false;
+    }
+    
+    if (!validado) {
+        $.toast({
+            heading: 'Erro de Validação',
+            text: texto,
+            position: 'mid-center',
+            showHideTransition: 'slide',
+            icon: 'error'
+        });
+    }
+
+
+    return validado;
+}

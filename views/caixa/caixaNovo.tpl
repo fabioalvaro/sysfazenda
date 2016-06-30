@@ -19,15 +19,15 @@
                                action="/caixa/gravar" 
                                method="post"
                                enctype="multipart/form-data"
-                               >                        
-                            <div class="form-group">
+                               onsubmit="return validaForm();">                        
+                            <div class="form-group has-error">
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" name="id_caixa" id="id_caixa" value="{$registro.id_caixa|default:''}">
                                     <input type="text" class="col-sm-4" id="data_registro" value="{$registro.data_registro|date_format:'d/m/Y'}" placeholder="Data Registro" name="data_registro">
                                 </div>
                             </div>                            
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="fazenda" class="col-sm-2 control-label">Fazenda</label>
                                 <div class="col-sm-4">
                                     <select id="fazenda" name="fazenda" placeholder="Fazenda" class="col-xs-12">
@@ -41,7 +41,7 @@
                                     <input type="text" class="form-control" id="historico" name="historico" value="{$registro.historico|default:''}" placeholder="Histórico">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="valor" class="col-sm-2 control-label">Valor</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|default:''|number_format:2:",":"."}" placeholder="Valor">

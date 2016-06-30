@@ -19,8 +19,9 @@
                                action="/animal/gravar" 
                                method="post"
                                enctype="multipart/form-data"
+                               onsubmit="return validaForm();"
                                >                        
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="data_registro" class="col-sm-2 control-label">Data Registro</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" name="id_animal" id="id_animal" value="{$registro.id_animal|default:''}">
@@ -33,7 +34,7 @@
                                     <input type="datetime" class="col-sm-4" id="data_nascimento" placeholder="Data Nascimento" name="data_nascimento" value="{$registro.data_nascimento|default:''|date_format:'d/m/Y'}">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="fazenda" class="col-sm-2 control-label">Fazenda</label>
                                 <div class="col-sm-4">
                                     <select id="fazenda" name="fazenda" placeholder="Fazenda" class="col-xs-12">
@@ -47,13 +48,13 @@
                                     <input type="text" class="form-control" id="numero_brinco" name="numero_brinco" placeholder="Nº Brinco" value="{$registro.numero_brinco|default:''}">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="nome" class="col-sm-2 control-label">Nome</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control" id="nome" name="nome" value="{$registro.nome|default:''}" placeholder="Nome">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="sexo" class="col-sm-2 control-label">Sexo</label>
                                 <div class="col-sm-4">
                                     <select id="sexo" name="sexo" placeholder="Sexo" class="col-xs-12">
@@ -67,7 +68,7 @@
                                     <input type="text" class="form-control" name="peso" id="peso" value="{$registro.peso|default:''|number_format:2:",":"."}" placeholder="peso">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="tipo_registro" class="col-sm-2 control-label">Tipo Registro</label>
                                 <div class="col-sm-4">
                                     <select id="tipo_registro" name="tipo_registro" placeholder="Tipo Registro" class="col-xs-12">

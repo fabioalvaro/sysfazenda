@@ -7,12 +7,29 @@ function confirmaExcluir(id_fazenda) {
 }
 
 function validaForm() {
-    var validado = true;     
+    var validado = true;
+    var texto = '';
+   
     if ($("#nome").val().trim() === '') {
-        alert('INSIRA O NOME DA FAZENDA');
+        texto = 'Favor informar o nome da fazenda';
         validado = false;
-    }    
+    }
     
+    if ($("#responsavel").val().trim() === '') {
+        texto = texto + ' Favor informar o responsavel';
+        validado = false;
+    }
+    
+    if (!validado) {
+        $.toast({
+            heading: 'Erro de Validação',
+            text: texto,
+            position: 'mid-center',
+            showHideTransition: 'slide',
+            icon: 'error'
+        });
+    }
+
 
     return validado;
 }

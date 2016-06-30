@@ -28,3 +28,46 @@ function escondeDescontinuado(){
         $("#desc").hide("slow");
     }
 }
+
+function validaForm() {
+    var validado = true;
+    var texto = '';
+
+    if ($("#data_registro").val().trim() === '') {
+        texto = 'Favor informar a data do registro';
+        validado = false;
+    }
+
+    if ($("#fazenda").val().trim() === '') {
+        texto = texto + ' Favor informar a fazenda do animal';
+        validado = false;
+    }
+
+    if ($("#nome").val().trim() === '') {
+        texto = texto + ' Favor informar o nome do animal';
+        validado = false;
+    }
+
+    if ($("#sexo").val().trim() === 'N') {
+        texto = texto + ' Favor informar o sexo do animal';
+        validado = false;
+    }
+
+    if ($("#tipo_registro").val() === '0') {
+        texto = texto + ' Favor informar o tipo do registro';
+        validado = false;
+    }
+
+    if (!validado) {
+        $.toast({
+            heading: 'Erro de Validação',
+            text: texto,
+            position: 'mid-center',
+            showHideTransition: 'slide',
+            icon: 'error'
+        });
+    }
+
+
+    return validado;
+}

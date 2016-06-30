@@ -19,7 +19,7 @@
                                action="/fazenda/gravar" 
                                method="POST" 
                                onsubmit = "return validaForm();">                        
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="nome" class="col-sm-2 control-label">Nome</label>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="form-control" id="id_Fazenda" name="id_fazenda" value="{$registro.id_fazenda}">
@@ -50,7 +50,7 @@
                                     <input type="text" class="form-control" id="cartaoProdutor" name="cartaoProdutor" value="{$registro.cartao_produtor|default:''}" placeholder="Cartão Produtor">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-error">
                                 <label for="responsavel" class="col-sm-2 control-label">Responsável</label>
                                 <div class="col-sm-4">
                                     <select id="responsavel" name="responsavel" class="col-xs-12">

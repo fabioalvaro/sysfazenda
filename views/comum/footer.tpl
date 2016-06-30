@@ -15,3 +15,5 @@
 <script type="text/javascript" src="/files/js/ace/theme-github.js"></script>
 <!-- Javascript -->
 <script type="text/javascript" src="/files/js/app.js"></script>
+<script type="text/javascript" src="/files/js/util.js"></script>
+<script type="text/javascript" src="/files/js/jquery.toast.min.js"></script>
