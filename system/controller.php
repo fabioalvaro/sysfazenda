@@ -23,7 +23,7 @@ class controller extends System {
         $this->smarty = new Smarty;
         $this->smarty->debugging = false;
         $this->smarty->force_compile = true;
-        $this->smarty->caching = true;
+        $this->smarty->caching = false;
         $this->smarty->template_dir = SMARTYDIR;        
         $this->smarty->compile_dir = ROOT_APP."/tmp/";
         $this->smarty->config_dir = SMARTYDIR . "/configs/";
