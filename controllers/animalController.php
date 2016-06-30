@@ -14,6 +14,7 @@ class animal extends controller {
     }
 
     public function novo() {
+       
         $id_animal = $this->getParam('id_animal');
         $registro = array();
         if ((bool) $id_animal) {
