@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label for="peso" class="col-sm-2 control-label">Peso</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="peso" id="peso" value="{(double)$registro.peso|default:''|number_format:2:",":"."}" placeholder="peso">
+                                    <input type="text" class="form-control" name="peso" id="peso" value="{$registro.peso|number_format:2:",":"."}" placeholder="peso">
                                 </div>
                             </div>
                             <div class="form-group has-error">
