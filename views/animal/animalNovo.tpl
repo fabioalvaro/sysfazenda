@@ -77,19 +77,27 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="id_mae" class="col-sm-2 control-label">Mãe</label>
+                                <label for="nome_mae" class="col-sm-2 control-label">Nome da Mãe</label>
                                 <div class="col-sm-4">
-                                    <select id="id_mae" name="id_mae" placeholder="Mãe" class="col-xs-12">
-                                        {html_options options=$options_animais_maes|default:'' selected=$registro.id_mae}
-                                    </select>
+                                    <input type="text" class="form-control" id="nome_mae" name="nome_mae" value="{$registro.nome_mae|default:''}" placeholder="Nome da Mãe">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="id_pai" class="col-sm-2 control-label">Pai</label>
+                                <label for="brinco_mae" class="col-sm-2 control-label">Brinco da Mãe</label>
                                 <div class="col-sm-4">
-                                    <select id="id_pai" name="id_pai" placeholder="Pai" class="col-xs-12">
-                                        {html_options options=$options_animais_pais|default:'' selected=$registro.id_pai}
-                                    </select>
+                                    <input type="text" class="form-control" id="brinco_mae" name="brinco_mae" value="{$registro.brinco_mae|default:''}" placeholder="Brinco da Mãe">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nome_pai" class="col-sm-2 control-label">Nome do Pai</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="nome_pai" name="nome_pai" value="{$registro.nome_pai|default:''}" placeholder="Nome do Pai">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="brinco_pai" class="col-sm-2 control-label">Brinco do Pai</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="brinco_pai" name="brinco_pai" value="{$registro.brinco_pai|default:''}" placeholder="Brinco do Pai">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -124,7 +132,7 @@
                                     <input type="checkbox" class="form-control" id="descontinuado" name="descontinuado" {if $registro.flag_descontinuado == 1} checked="true"{/if} onclick="escondeDescontinuado();">
                                 </div>
                             </div>
-                            <div id="desc">
+                                <div id="desc" hidden="">
                                 <div class="form-group">
                                     <label for="data_descontinuado" class="col-sm-2 control-label">Data Descontinuado</label>
                                     <div class="col-sm-4">                                        

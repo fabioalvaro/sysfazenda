@@ -86,6 +86,13 @@ class caixa extends controller {
         foreach ($modelFazendas->getFazendas() as $value) {
             $options_fazendas[$value['id_fazenda']] = $value['nome'];
         }
+         //buscando Centro de Custo
+        $modelCustos = new centro_custoModel();
+        $options_custos = array('' => 'SELECIONE');
+        foreach ($modelCustos->getCentro_custos() as $value) {
+            $options_custos[$value['id_centro_custo']] = $value['descricao'];
+        }
+        $this->smarty->assign('options_custos', $options_custos);
         $this->smarty->assign('options_fazendas', $options_fazendas);
         $this->smarty->assign('registro', $registro);
         $this->smarty->display('caixa/caixaNovo.tpl');

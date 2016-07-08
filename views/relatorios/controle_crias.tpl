@@ -13,8 +13,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Nº Brinco Mãe</th> 
-                            <th>Idade Mãe</th>
+                            <th>Nº Brinco Mãe</th>                             
                             <th>Nº Brinco</th>                            
                             <th>Sexo</th>                            
                             <th>Data Nascimento</th>
@@ -27,8 +26,7 @@
                     <tbody>
                         {foreach from=$linha_fazenda.crias item="linha_crias"}
                             <tr>
-                                <td>{$linha_crias.brincoMae}</td>
-                                <td>{$linha_crias.idadeMae}</td>
+                                <td>{$linha_crias.brincoMae}</td>                                
                                 <td>{$linha_crias.numero_brinco}</td> 
                                 <td>{$linha_crias.sexo}</td>
                                 <td>{$linha_crias.data_nascimento|date_format:'d/m/Y'}</td>                                

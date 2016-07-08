@@ -86,9 +86,11 @@ class animal extends controller {
         $data['data_nascimento'] = isset($_POST['data_nascimento']) ? $_POST['data_nascimento'] : '';
         $data['peso'] = isset($_POST['peso']) ? $_POST['peso'] : 0;
         $data['tipo_registro'] = isset($_POST['tipo_registro']) ? $_POST['tipo_registro'] : '';
-        $data['id_mae'] = isset($_POST['id_mae']) ? $_POST['id_mae'] : '';
-        $data['id_semen'] = isset($_POST['id_semen']) ? $_POST['id_semen'] : '';
-        $data['id_pai'] = isset($_POST['id_pai']) ? $_POST['id_pai'] : '';
+        $data['nome_mae'] = isset($_POST['nome_mae']) ? $_POST['nome_mae'] : '';
+        $data['brinco_mae'] = isset($_POST['brinco_mae']) ? $_POST['brinco_mae'] : '';
+        $data['nome_pai'] = isset($_POST['nome_pai']) ? $_POST['nome_pai'] : '';
+        $data['brinco_pai'] = isset($_POST['brinco_pai']) ? $_POST['brinco_pai'] : '';
+        $data['id_semen'] = isset($_POST['id_semen']) ? $_POST['id_semen'] : '';        
         $data['procedencia'] = isset($_POST['procedencia']) ? $_POST['procedencia'] : '';
         $data['caracteristicas'] = isset($_POST['caracteristicas']) ? $_POST['caracteristicas'] : '';
         $data['obs'] = isset($_POST['observacao']) ? $_POST['observacao'] : '';
@@ -139,7 +141,7 @@ class animal extends controller {
         $modelo = isset($_POST['modelo']) ? $_POST['modelo'] : 0;
         $fazenda = isset($_POST['fazenda']) ? $_POST['fazenda'] : 0;
         $dataInicial = isset($_POST['data_inicial']) ? implode("-", array_reverse(explode("/", $_POST['data_inicial']))) : '';
-        $dataFinal = isset($_POST['data_final']) ? implode("-", array_reverse(explode("/", $_POST['data_final']))) : '';
+        $dataFinal = isset($_POST['data_final']) ? implode("-", array_reverse(explode("/", $_POST['data_final']))) : '';        
         switch ($modelo) {
             case 1:
                 $this->cadastroPorFazenda($fazenda);
@@ -161,8 +163,9 @@ class animal extends controller {
             $fazendas = $modelFazendas->getFazendas("f.id_fazenda = {$id_fazenda}");
         }
         foreach ($fazendas as $fazenda) {
-            $modelAnimais = new animalModel();
+            $modelAnimais = new animalModel();            
             $regAnimais = $modelAnimais->getAnimais("f.id_fazenda = {$fazenda["id_fazenda"]}","a.id_animal");
+            
             $animais = array();
             foreach ($regAnimais as $animal) {
                 $animais[] = array(
@@ -198,10 +201,12 @@ class animal extends controller {
             if (!empty($data_inicial) && !empty($data_final)) {
                 $where = $where . " and a.data_registro >= '{$data_inicial}' and a.data_registro <= '{$data_final}'";
             }
+            
             $modelAnimais = new animalModel();
             $criasTemp = array();
             //busca as crias
-            $crias = $modelAnimais->getCrias($where);
+            //var_dump("cheguei");
+            $crias = $modelAnimais->getCrias($where);            
             foreach ($crias as $cria) {
                 //tipo registro
                 $tipo_registro = '';
@@ -223,8 +228,7 @@ class animal extends controller {
                         break;
                 }
                 $criasTemp[] = array(
-                    "brinco_mae" => $cria['brincoMae'],
-                    "idade_mae" => $cria['idadeMae'],
+                    "brinco_mae" => $cria['brincoMae'],                    
                     "brinco_pai" => $cria['brincoPai'],
                     "numero_brinco" => $cria['numero_brinco'],
                     "sexo" => $cria['sexo'],

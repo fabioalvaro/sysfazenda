@@ -108,7 +108,9 @@
                                             <li><a href="/semen">Banco de Semem</a></li>
                                             <li><a href="/consulta">Cadastro de Consulta</a></li>
                                             {*<li><a href="/nascimento">Cadastro de Nascimento</a></li>*}
-                                            <li><a href="/caixa">Caixa</a></li>                                            
+                                            <li><a href="/caixa">Caixa</a></li>
+                                            <li><a href="/responsaveis">Responsáveis</a></li>
+                                            <li><a href="/centro_custo">Centro de Custo</a></li>
                                         </ul>
                                     </div>
                                 </div>

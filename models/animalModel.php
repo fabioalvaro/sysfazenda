@@ -27,13 +27,9 @@ class animalModel extends model {
                          a.tipo_registro,                         
                          a.obs,
                          a.caracteristicas,
-                         m.numero_brinco as brincoMae,
-                         cm.idade as idadeMae,
-                         p.numero_brinco as brincoPai');
-        return $this->read("{$this->tabPadrao} a left join consultas c on c.id_animal = a.id_animal 
-                            left join animais m on m.id_animal = a.id_mae                            
-                            left join consultas cm on cm.id_animal = a.id_mae
-                            left join animais p on p.id_animal = a.id_pai", $select, $where, "a.id_animal", null, null, "m.numero_brinco");
+                         a.brinco_mae as brincoMae,                         
+                         a.brinco_pai as brincoPai');
+        return $this->read("{$this->tabPadrao} a left join consultas c on c.id_animal = a.id_animal ", $select, $where, "a.id_animal", null, null, "a.numero_brinco");
     }
     
     public function getAnimaisPorFazenda(){
@@ -60,8 +56,10 @@ class animalModel extends model {
                          a.procedencia,
                          a.caracteristicas,
                          a.obs,
-                         a.id_mae,
-                         a.id_pai,
+                         a.nome_mae,
+                         a.nome_pai,
+                         a.brinco_mae,
+                         a.brinco_pai,
                          a.id_semen,
                          a.flag_descontinuado,
                          a.data_descontinuado,

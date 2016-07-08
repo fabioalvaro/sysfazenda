@@ -24,10 +24,10 @@ class fazenda extends controller {
         }
 
         //buscando responsaveis
-        $modelResponsaveis = new responsavelModel();
+        $modelResponsaveis = new usuarioModel();
         $options_responsaveis = array('' => 'SELECIONE');
-        foreach ($modelResponsaveis->getResponsavel() as $value) {
-            $options_responsaveis[$value['id_responsavel']] = $value['nome'];
+        foreach ($modelResponsaveis->getUsuarios() as $value) {
+            $options_responsaveis[$value['id_usuario']] = $value['nome'];
         }
         $this->smarty->assign('options_responsaveis', $options_responsaveis);
         $this->smarty->assign('registro', $registro);

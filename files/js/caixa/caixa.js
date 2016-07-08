@@ -27,6 +27,11 @@ function validaForm() {
         validado = false;
     }
     
+    if ($("#centro_custo").val() == '0') {
+        texto = texto + ' Favor informar o centro de custo';
+        validado = false;
+    }
+    
     if ($("#valor").val().trim() === '') {
         texto = texto + ' Favor informar o valor';
         validado = false;

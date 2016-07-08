@@ -35,6 +35,14 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group has-error">
+                                <label for="centro_custo" class="col-sm-2 control-label">Centro de Custo</label>
+                                <div class="col-sm-4">
+                                    <select id="centro_custo" name="centro_custo" placeholder="Centro de Custo" class="col-xs-12">
+                                        {html_options options=$options_custos|default:'' selected=$registro.id_centro_custo}
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="historico" class="col-sm-2 control-label">Histórico</label>
                                 <div class="col-sm-4">
@@ -44,7 +52,7 @@
                             <div class="form-group has-error">
                                 <label for="valor" class="col-sm-2 control-label">Valor</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|default:''|number_format:2:",":"."}" placeholder="Valor">
+                                    <input type="text" class="form-control" id="valor" name="valor" value="{$registro.valor|number_format:2:",":"."}" placeholder="Valor">
                                 </div>
                             </div>                                                                                                                
                             <div class="form-group">

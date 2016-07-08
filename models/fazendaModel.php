@@ -33,7 +33,7 @@ class fazendaModel extends model {
                          f.cartao_produtor,
                          f.id_responsavel,
                          r.nome as nomeResponsavel');
-        return $this->read("{$this->tabPadrao} f left join responsaveis r on r.id_responsavel = f.id_responsavel", $select, $where, null, null, null, null);
+        return $this->read("{$this->tabPadrao} f left join usuarios r on r.id_usuario = f.id_responsavel", $select, $where, null, null, null, null);
     }
 
     /** Save a new Entity  */

@@ -1,4 +1,6 @@
+
 $(document).ready(function () {
+    escondeDescontinuado();
     $("#data_registro").datepicker({
         format: 'dd/mm/yyyy',
         language: 'pt-BR'
@@ -11,6 +13,7 @@ $(document).ready(function () {
         format: 'dd/mm/yyyy',
         language: 'pt-BR'
     });
+    
 });
 
 function confirmaExcluir(id_animal) {
