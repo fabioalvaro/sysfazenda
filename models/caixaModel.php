@@ -27,8 +27,10 @@ class caixaModel extends model {
                          c.historico,
                          c.valor,
                          c.id_fazenda,
+                         c.id_centro_custo,
+                         ce.descricao,
                          f.nome as nomeFazenda');
-        return $this->read("$this->tabPadrao c left join fazendas f on f.id_fazenda = c.id_fazenda" , $select, $where, null, null, null, null);
+        return $this->read("$this->tabPadrao c left join fazendas f on f.id_fazenda = c.id_fazenda left join centro_custo ce on ce.id_centro_custo = c.id_centro_custo" , $select, $where, null, null, null, null);
     }
 
     /** Save a new Entity  */

@@ -47,24 +47,36 @@ class caixa extends controller {
             }
             $modelCaixa = new caixaModel();
             $caixasTemp = array();
+            $custoTemp = array(); 
+            $saldo = array();
             //busca as crias            
-            $lancamentos = $modelCaixa->getCaixas($where);            
-            $saldo = 0;
+            $lancamentos = $modelCaixa->getCaixas($where);                        
             foreach ($lancamentos as $lancamento) {
-                $saldo = $saldo + $lancamento['valor'];
-                $caixasTemp[] = array(
+                $saldo[$lancamento['id_centro_custo']] = $saldo[$lancamento['id_centro_custo']] + $lancamento['valor'];                
+                $caixasTemp[$lancamento['id_centro_custo']][] = array(
+                    "nome_centro_custo" => $lancamento['descricao'],
+                    "id_centro_custo" => $lancamento['id_centro_custo'],
                     "data_registro" => $lancamento['data_registro'],
                     "historico" => $lancamento['historico'],
                     "valor" => $lancamento['valor']
                 );
-            }
+            }            
+            foreach ($caixasTemp as $caixa){                                
+                $custoTemp[] = array(
+                    "nome_centro_custo" => $caixa[0]['nome_centro_custo'],
+                    "id_centro_custo" => $caixa[0]['id_centro_custo'],
+                    "lancamentos" => $caixa
+                );                                
+            }            
             $registros[] = array(
                 "nome_fazenda" => $fazenda["nome"],
-                "caixas" => $caixasTemp,
+                "centro_custo" => $custoTemp,
                 "saldoFinal" => $saldo
             );
         }
-        //print_r($registros);die;
+//        echo '<pre>';
+//        print_r($registros);        
+//        echo '</pre>';die;
         $this->smarty->assign('registros', $registros);
         $this->smarty->display('relatorios/caixa.tpl');
     }
@@ -99,13 +111,14 @@ class caixa extends controller {
     }
 
     public function gravar() {
-        // var_dump($_POST);die;
+        //var_dump($_POST);die;
         $_POST['data_registro'] = implode("-", array_reverse(explode("/", $_POST['data_registro'])));
         $data['id_caixa'] = isset($_POST['id_caixa']) ? $_POST['id_caixa'] : 0;
         $data['data_registro'] = isset($_POST['data_registro']) ? $_POST['data_registro'] : '';
         $data['historico'] = isset($_POST['historico']) ? $_POST['historico'] : 0;
         $data['valor'] = isset($_POST['valor']) ?  str_replace(',','.',$_POST['valor']) : '';
         $data['id_fazenda'] = isset($_POST['fazenda']) ? $_POST['fazenda'] : '';
+        $data['id_centro_custo'] = isset($_POST['centro_custo']) ? $_POST['centro_custo'] : '';
 
         //var_dump($data);die;
         //gravando os dados
